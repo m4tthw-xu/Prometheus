@@ -7,7 +7,6 @@
 [ext_resource path="res://pass_through.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/Prom/promspear32x32.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Prom/promSword48x32.png" type="Texture" id=7]
-[ext_resource path="res://Melee.tscn" type="PackedScene" id=8]
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
@@ -125,6 +124,9 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 15 )
 
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 16, 16 )
+
 [node name="Player" type="KinematicBody2D"]
 z_index = 1
 collision_mask = 3
@@ -157,7 +159,9 @@ limit_bottom = 180
 smoothing_enabled = true
 smoothing_speed = 2.0
 
-[node name="Melee" parent="." instance=ExtResource( 8 )]
+[node name="Melee" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee"]
+shape = SubResource( 29 )
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="body_entered" from="Melee" to="." method="_on_Melee_body_entered"]

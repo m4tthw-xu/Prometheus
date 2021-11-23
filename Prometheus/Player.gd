@@ -34,6 +34,7 @@ func _physics_process(delta):
 	# running left and right animations and mechanics
 	if Input.is_action_pressed("ui_d"):
 		velocity.x = SPEED
+		$Melee.position.x = 12
 		if is_attacking == false:
 			$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = false
@@ -41,6 +42,7 @@ func _physics_process(delta):
 			$Position2D.position.x *= -1
 	elif Input.is_action_pressed("ui_a"):
 		velocity.x = -SPEED
+		$Melee.position.x = -12
 		if is_attacking == false:
 			$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = true
@@ -74,11 +76,16 @@ func _physics_process(delta):
 		is_attacking = true
 		if sign($Position2D.position.x) == 1:
 			$AnimatedSprite.offset.x = 14
-			$Melee.position.x = 12
 		if sign($Position2D.position.x) == -1:
 			$AnimatedSprite.offset.x = -14
-			$Melee.position.x = -12
+		
+		print($Melee.get_overlapping_bodies())
+		for bob in $Melee.get_overlapping_bodies():
+			if bob.name.find("Slime") != -1:
+				bob.dead()
+
 		$AnimatedSprite.play("sword")
+
 	
 	velocity.y = velocity.y + GRAVITY
 	
@@ -98,8 +105,7 @@ func _physics_process(delta):
 	
 	previous_animation = $AnimatedSprite.animation
 	
-	print($Melee.position.x)
-
+	
 
 
 # pass through platform function tutorial: https://www.youtube.com/watch?v=T704Zrlye2k&ab_channel=Pigdev
@@ -112,6 +118,3 @@ func _on_AnimatedSprite_animation_finished():
 		is_attacking = false
 
 
-func _on_Melee_body_entered(body):
-	if "Slime" in body.name and $AnimatedSprite.animation == "sword":
-		body.dead()
