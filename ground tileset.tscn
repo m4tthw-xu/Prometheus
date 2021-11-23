@@ -28,7 +28,7 @@ visible = false
 visible = false
 shape = SubResource( 1 )
 
-[node name="Ground01" type="Sprite" parent="."]
+[node name="float" type="Sprite" parent="."]
 position = Vector2( 17, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
@@ -37,14 +37,17 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground01"]
+[node name="StaticBody2D" type="StaticBody2D" parent="float"]
 visible = false
+collision_layer = 2
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground01/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="float/StaticBody2D"]
 visible = false
 shape = SubResource( 1 )
+one_way_collision = true
 
-[node name="Ground02" type="Sprite" parent="."]
+[node name="ground" type="Sprite" parent="."]
 position = Vector2( 34, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
@@ -53,10 +56,11 @@ __meta__ = {
 "_edit_group_": true
 }
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Ground02"]
+[node name="StaticBody2D" type="StaticBody2D" parent="ground"]
 visible = false
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground02/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground/StaticBody2D"]
 visible = false
 shape = SubResource( 1 )
 
