@@ -70,6 +70,15 @@ func _physics_process(delta):
 			spear.set_fireball_direction(-1)
 		get_parent().add_child(spear)
 		spear.position = $Position2D.global_position
+	if Input.is_action_just_pressed("ui_g"):
+		is_attacking = true
+		if sign($Position2D.position.x) == 1:
+			$AnimatedSprite.offset.x = 14
+			$Melee.position.x = 12
+		if sign($Position2D.position.x) == -1:
+			$AnimatedSprite.offset.x = -14
+			$Melee.position.x = -12
+		$AnimatedSprite.play("sword")
 	
 	velocity.y = velocity.y + GRAVITY
 	
@@ -88,11 +97,21 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, FLOOR)
 	
 	previous_animation = $AnimatedSprite.animation
+	
+	print($Melee.position.x)
+
 
 
 # pass through platform function tutorial: https://www.youtube.com/watch?v=T704Zrlye2k&ab_channel=Pigdev
 
 
 func _on_AnimatedSprite_animation_finished():
-	if previous_animation == "spear":
+	if previous_animation == "sword":
+		$AnimatedSprite.offset.x = 0
+	if previous_animation == "spear" or previous_animation == "sword":
 		is_attacking = false
+
+
+func _on_Melee_body_entered(body):
+	if "Slime" in body.name and $AnimatedSprite.animation == "sword":
+		body.dead()
