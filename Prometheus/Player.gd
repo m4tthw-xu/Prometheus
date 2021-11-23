@@ -12,13 +12,15 @@ const GRAVITY = 30
 const JUMP_POWER = -350
 const FLOOR = Vector2(0,-1)
 
-const FIREBALL = preload("res://Fireball.tscn")
+const SPEAR = preload("res://Spear.tscn")
 
 var velocity = Vector2()
 
 var on_ground = false
 
+# only changes animation after the attack animation is done
 var is_attacking = false
+var previous_animation = "idle"
 
 func input_process(actor, event):
 	if event.is_action_pressed(actor.jump):
@@ -29,23 +31,28 @@ func input_process(actor, event):
 
 func _physics_process(delta):
 	
+	# running left and right animations and mechanics
 	if Input.is_action_pressed("ui_d"):
 		velocity.x = SPEED
-		$AnimatedSprite.play("run")
+		if is_attacking == false:
+			$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = false
 		if sign($Position2D.position.x) == -1:
 			$Position2D.position.x *= -1
 	elif Input.is_action_pressed("ui_a"):
 		velocity.x = -SPEED
-		$AnimatedSprite.play("run")
+		if is_attacking == false:
+			$AnimatedSprite.play("run")
 		$AnimatedSprite.flip_h = true
 		if sign($Position2D.position.x) == 1:
 			$Position2D.position.x *= -1
 	else:
 		velocity.x = 0
 		if on_ground == true:
-			$AnimatedSprite.play("idle")
+			if is_attacking == false:
+				$AnimatedSprite.play("idle")
 		
+	# jump mechanics
 	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_w"): #ui_accept is the space bar or enter bar
 		if on_ground == true:
 			velocity.y = JUMP_POWER
@@ -55,27 +62,37 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_t"):
 		is_attacking = true
 		# need to add once we have a shooting animation
-		# $AnimatedSprite.play("attack")
-		var fireball = FIREBALL.instance()
+		$AnimatedSprite.play("spear")
+		var spear = SPEAR.instance()
 		if sign($Position2D.position.x) == 1:
-			fireball.set_fireball_direction(1)
+			spear.set_fireball_direction(1)
 		else:
-			fireball.set_fireball_direction(-1)
-		get_parent().add_child(fireball)
-		fireball.position = $Position2D.global_position
+			spear.set_fireball_direction(-1)
+		get_parent().add_child(spear)
+		spear.position = $Position2D.global_position
 	
 	velocity.y = velocity.y + GRAVITY
 	
+	# jumping/falling animation
 	if is_on_floor():
 		on_ground = true
 	else:
 		on_ground = false
 		if velocity.y <0:
-			$AnimatedSprite.play("jump")
+			if is_attacking == false:
+				$AnimatedSprite.play("jump")
 		else:
-			$AnimatedSprite.play("fall")
+			if is_attacking == false:
+				$AnimatedSprite.play("fall")
 	
 	velocity = move_and_slide(velocity, FLOOR)
+	
+	previous_animation = $AnimatedSprite.animation
 
 
 # pass through platform function tutorial: https://www.youtube.com/watch?v=T704Zrlye2k&ab_channel=Pigdev
+
+
+func _on_AnimatedSprite_animation_finished():
+	if previous_animation == "spear":
+		is_attacking = false
