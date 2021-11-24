@@ -99,14 +99,14 @@ func _physics_process(delta):
 			for bob in $Melee.get_overlapping_bodies():
 				if bob.name.find("Slime") != -1:
 					bob.dead()
-					#kills += 1
 
 			$AnimatedSprite.play("sword")
 	
+	
 	# update score
-	# 145.5 is base height
+	# 145.5 is starting height
 	var height_difference = 145.5 - self.position.y
-	height = int(height_difference/16)
+	height = int(height_difference/16) # divide by 16 cuz that's the block size
 	score = height + kills
 
 	
