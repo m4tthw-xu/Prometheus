@@ -96,12 +96,14 @@ func _physics_process(delta):
 			elif direction == "right":
 				$AnimatedSprite.offset.x = -14
 
-			for bob in $Melee.get_overlapping_bodies():
-				if bob.name.find("Slime") != -1:
-					bob.dead()
+			
 
 			$AnimatedSprite.play("sword")
 	
+	if $AnimatedSprite.animation == "sword":
+		for bob in $Melee.get_overlapping_bodies():
+			if bob.name.find("Slime") != -1:
+				bob.dead()
 	
 	# update score
 	# 145.5 is starting height
