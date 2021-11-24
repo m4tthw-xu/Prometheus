@@ -167,5 +167,15 @@ shape = SubResource( 29 )
 [node name="MeleeTimer" type="Timer" parent="."]
 wait_time = 0.4
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_right = 59.0
+margin_bottom = 14.0
+text = "Score: 15"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="MeleeTimer" to="." method="_on_MeleeTimer_timeout"]
