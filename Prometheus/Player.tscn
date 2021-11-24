@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://Sprites/Prom/promIdle.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -7,7 +7,8 @@
 [ext_resource path="res://pass_through.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/Prom/promspear32x32.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Prom/promSword48x32.png" type="Texture" id=7]
-[ext_resource path="res://Melee.tscn" type="PackedScene" id=8]
+[ext_resource path="res://PlayerStats.gd" type="Script" id=8]
+[ext_resource path="res://Fonts/orange kid.ttf" type="DynamicFontData" id=9]
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
@@ -125,6 +126,20 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7, 15 )
 
+[sub_resource type="RectangleShape2D" id=29]
+extents = Vector2( 16, 14 )
+
+[sub_resource type="DynamicFont" id=30]
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=31]
+size = 12
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=32]
+size = 12
+font_data = ExtResource( 9 )
+
 [node name="Player" type="KinematicBody2D"]
 z_index = 1
 collision_mask = 3
@@ -157,7 +172,59 @@ limit_bottom = 180
 smoothing_enabled = true
 smoothing_speed = 2.0
 
-[node name="Melee" parent="." instance=ExtResource( 8 )]
+[node name="Melee" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Melee"]
+shape = SubResource( 29 )
+
+[node name="MeleeTimer" type="Timer" parent="."]
+wait_time = 0.4
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerStats" type="MarginContainer" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerStats"]
+margin_left = 5.0
+margin_right = 315.0
+margin_bottom = 175.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PlayerStats/HBoxContainer"]
+margin_right = 46.0
+margin_bottom = 175.0
+custom_constants/separation = 0
+
+[node name="Score" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
+margin_right = 46.0
+margin_bottom = 20.0
+custom_fonts/font = SubResource( 30 )
+text = "Score: 7"
+
+[node name="Height" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 46.0
+margin_bottom = 35.0
+custom_fonts/font = SubResource( 31 )
+text = "Height: 3"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Kills" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
+margin_top = 35.0
+margin_right = 46.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 32 )
+text = "Kills: 4"
 
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
-[connection signal="body_entered" from="Melee" to="." method="_on_Melee_body_entered"]
+[connection signal="timeout" from="MeleeTimer" to="." method="_on_MeleeTimer_timeout"]

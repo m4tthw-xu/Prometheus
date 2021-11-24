@@ -20,7 +20,12 @@ func _ready():
 func dead():
 	is_dead = true
 	velocity = Vector2(0,0)
+	$CollisionShape2D.disabled = true	
 	$AnimatedSprite.play("dead")
+	
+	# will increase the player's kill count by 1 when slime dies
+	var player_path = "/root/" + get_parent().name + "/Player"
+	get_node(player_path).kills += 1
 
 
 
