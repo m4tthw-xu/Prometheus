@@ -23,6 +23,11 @@ var direction = "left"
 # can only attack every 3 seconds
 var sword_delay = false
 
+# score is determined by height + slimes killed
+var score = 0
+var height = 0
+var kills = 0
+
 # this is for the passthrough function of platforms
 func input_process(actor, event):
 	if event.is_action_pressed(actor.jump):
@@ -32,7 +37,7 @@ func input_process(actor, event):
 			actor.jump
 
 func _physics_process(delta):
-
+	
 	# running left and right animations and mechanics
 	# will not flip direction of sprite until the attack animation is done
 	if Input.is_action_pressed("ui_d"):
@@ -94,8 +99,15 @@ func _physics_process(delta):
 			for bob in $Melee.get_overlapping_bodies():
 				if bob.name.find("Slime") != -1:
 					bob.dead()
+					#kills += 1
 
 			$AnimatedSprite.play("sword")
+	
+	# update score
+	# 145.5 is base height
+	var height_difference = 145.5 - self.position.y
+	height = int(height_difference/16)
+	score = height + kills
 
 	
 	velocity.y = velocity.y + GRAVITY
