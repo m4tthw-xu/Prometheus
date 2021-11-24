@@ -1,11 +1,5 @@
 extends KinematicBody2D
 
-# Controls:
-# w: jump
-# space: jump
-# a: move left
-# d: move right
-# t: shoot fireball
 
 const SPEED = 85
 const GRAVITY = 30
@@ -22,8 +16,11 @@ var on_ground = false
 var is_attacking = false
 var previous_animation = "idle"
 
+# if direction changes while attack animation is still playing, the direction is
+# stored in the "direction" variable, and then will change once attack is finished
 var direction = "left"
 
+# this is for the passthrough function of platforms
 func input_process(actor, event):
 	if event.is_action_pressed(actor.jump):
 		if actor.has_node("pass_through") and Input.is_action_pressed("ui_s"):
@@ -32,8 +29,7 @@ func input_process(actor, event):
 			actor.jump
 
 func _physics_process(delta):
-	
-	
+
 	# running left and right animations and mechanics
 	# will not flip direction of sprite until the attack animation is done
 	if Input.is_action_pressed("ui_d"):
@@ -73,7 +69,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_t"):
 		if $AnimatedSprite.animation != "sword":
 			is_attacking = true
-			# need to add once we have a shooting animation
 			$AnimatedSprite.play("spear")
 			var spear = SPEAR.instance()
 			if sign($Position2D.position.x) == 1:
@@ -85,12 +80,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_g"):
 		if $AnimatedSprite.animation != "spear":
 			is_attacking = true
-			if sign($Position2D.position.x) == 1:
+			if direction == "left":
 				$AnimatedSprite.offset.x = 14
-			if sign($Position2D.position.x) == -1:
+			elif direction == "right":
 				$AnimatedSprite.offset.x = -14
-			
-			print($Melee.get_overlapping_bodies())
+
 			for bob in $Melee.get_overlapping_bodies():
 				if bob.name.find("Slime") != -1:
 					bob.dead()
@@ -117,14 +111,14 @@ func _physics_process(delta):
 	previous_animation = $AnimatedSprite.animation
 	
 	
-
-
 # pass through platform function tutorial: https://www.youtube.com/watch?v=T704Zrlye2k&ab_channel=Pigdev
 
 
 func _on_AnimatedSprite_animation_finished():
 	if previous_animation == "sword":
+		# changes to idle first because if not, the character will offset back to 0 without
+		# finishing changing its animation, creating a glitching effect
+		$AnimatedSprite.play("idle")
 		$AnimatedSprite.offset.x = 0
 	if previous_animation == "spear" or previous_animation == "sword":
 		is_attacking = false
-
