@@ -20,6 +20,9 @@ var previous_animation = "idle"
 # stored in the "direction" variable, and then will change once attack is finished
 var direction = "left"
 
+# can only attack every 3 seconds
+var sword_delay = false
+
 # this is for the passthrough function of platforms
 func input_process(actor, event):
 	if event.is_action_pressed(actor.jump):
@@ -78,8 +81,11 @@ func _physics_process(delta):
 			get_parent().add_child(spear)
 			spear.position = $Position2D.global_position
 	if Input.is_action_just_pressed("ui_g"):
-		if $AnimatedSprite.animation != "spear":
+		if $AnimatedSprite.animation != "spear" and sword_delay == false:
 			is_attacking = true
+			sword_delay = true
+			$MeleeTimer.start()
+			
 			if direction == "left":
 				$AnimatedSprite.offset.x = 14
 			elif direction == "right":
@@ -89,7 +95,7 @@ func _physics_process(delta):
 				if bob.name.find("Slime") != -1:
 					bob.dead()
 
-		$AnimatedSprite.play("sword")
+			$AnimatedSprite.play("sword")
 
 	
 	velocity.y = velocity.y + GRAVITY
@@ -122,3 +128,8 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite.offset.x = 0
 	if previous_animation == "spear" or previous_animation == "sword":
 		is_attacking = false
+
+
+
+func _on_MeleeTimer_timeout():
+	sword_delay = false
