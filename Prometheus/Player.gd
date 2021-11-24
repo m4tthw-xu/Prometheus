@@ -37,7 +37,7 @@ func _physics_process(delta):
 		$Melee.position.x = 12
 		if is_attacking == false:
 			$AnimatedSprite.play("run")
-		$AnimatedSprite.flip_h = false
+			$AnimatedSprite.flip_h = false
 		if sign($Position2D.position.x) == -1:
 			$Position2D.position.x *= -1
 	elif Input.is_action_pressed("ui_a"):
@@ -45,7 +45,7 @@ func _physics_process(delta):
 		$Melee.position.x = -12
 		if is_attacking == false:
 			$AnimatedSprite.play("run")
-		$AnimatedSprite.flip_h = true
+			$AnimatedSprite.flip_h = true
 		if sign($Position2D.position.x) == 1:
 			$Position2D.position.x *= -1
 	else:
@@ -118,5 +118,4 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite.offset.x = 0
 	if previous_animation == "spear" or previous_animation == "sword":
 		is_attacking = false
-
 

@@ -20,6 +20,7 @@ func _ready():
 func dead():
 	is_dead = true
 	velocity = Vector2(0,0)
+	$CollisionShape2D.disabled = true
 	$AnimatedSprite.play("dead")
 
 
