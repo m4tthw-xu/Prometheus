@@ -22,6 +22,8 @@ var on_ground = false
 var is_attacking = false
 var previous_animation = "idle"
 
+var direction = "left"
+
 func input_process(actor, event):
 	if event.is_action_pressed(actor.jump):
 		if actor.has_node("pass_through") and Input.is_action_pressed("ui_s"):
@@ -31,21 +33,23 @@ func input_process(actor, event):
 
 func _physics_process(delta):
 	
+	
 	# running left and right animations and mechanics
+	# will not flip direction of sprite until the attack animation is done
 	if Input.is_action_pressed("ui_d"):
 		velocity.x = SPEED
 		$Melee.position.x = 12
+		direction = "left"
 		if is_attacking == false:
 			$AnimatedSprite.play("run")
-			$AnimatedSprite.flip_h = false
 		if sign($Position2D.position.x) == -1:
 			$Position2D.position.x *= -1
 	elif Input.is_action_pressed("ui_a"):
 		velocity.x = -SPEED
 		$Melee.position.x = -12
+		direction = "right"
 		if is_attacking == false:
 			$AnimatedSprite.play("run")
-			$AnimatedSprite.flip_h = true
 		if sign($Position2D.position.x) == 1:
 			$Position2D.position.x *= -1
 	else:
@@ -53,6 +57,11 @@ func _physics_process(delta):
 		if on_ground == true:
 			if is_attacking == false:
 				$AnimatedSprite.play("idle")
+	if is_attacking == false:
+		if direction == "left":
+			$AnimatedSprite.flip_h = false
+		if direction == "right":
+			$AnimatedSprite.flip_h = true
 		
 	# jump mechanics
 	if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_w"): #ui_accept is the space bar or enter bar
