@@ -62,27 +62,29 @@ func _physics_process(delta):
 	
 	# player can only attack after shooting animation completes
 	if Input.is_action_just_pressed("ui_t"):
-		is_attacking = true
-		# need to add once we have a shooting animation
-		$AnimatedSprite.play("spear")
-		var spear = SPEAR.instance()
-		if sign($Position2D.position.x) == 1:
-			spear.set_fireball_direction(1)
-		else:
-			spear.set_fireball_direction(-1)
-		get_parent().add_child(spear)
-		spear.position = $Position2D.global_position
+		if $AnimatedSprite.animation != "sword":
+			is_attacking = true
+			# need to add once we have a shooting animation
+			$AnimatedSprite.play("spear")
+			var spear = SPEAR.instance()
+			if sign($Position2D.position.x) == 1:
+				spear.set_fireball_direction(1)
+			else:
+				spear.set_fireball_direction(-1)
+			get_parent().add_child(spear)
+			spear.position = $Position2D.global_position
 	if Input.is_action_just_pressed("ui_g"):
-		is_attacking = true
-		if sign($Position2D.position.x) == 1:
-			$AnimatedSprite.offset.x = 14
-		if sign($Position2D.position.x) == -1:
-			$AnimatedSprite.offset.x = -14
-		
-		print($Melee.get_overlapping_bodies())
-		for bob in $Melee.get_overlapping_bodies():
-			if bob.name.find("Slime") != -1:
-				bob.dead()
+		if $AnimatedSprite.animation != "spear":
+			is_attacking = true
+			if sign($Position2D.position.x) == 1:
+				$AnimatedSprite.offset.x = 14
+			if sign($Position2D.position.x) == -1:
+				$AnimatedSprite.offset.x = -14
+			
+			print($Melee.get_overlapping_bodies())
+			for bob in $Melee.get_overlapping_bodies():
+				if bob.name.find("Slime") != -1:
+					bob.dead()
 
 		$AnimatedSprite.play("sword")
 
