@@ -7,6 +7,7 @@ const JUMP_POWER = -350
 const FLOOR = Vector2(0,-1)
 
 const SPEAR = preload("res://Spear.tscn")
+const CLAYSHIELD = preload("res://ClayShield.tscn")
 
 var velocity = Vector2()
 
@@ -20,8 +21,11 @@ var previous_animation = "idle"
 # stored in the "direction" variable, and then will change once attack is finished
 var direction = "left"
 
-# can only attack every 3 seconds
+# can only attack every 0.4 seconds
 var sword_delay = false
+
+# can only shield every 3 seconds
+var wall_delay = false
 
 # score is determined by height + slimes killed
 var score = 0
@@ -96,14 +100,29 @@ func _physics_process(delta):
 			elif direction == "right":
 				$AnimatedSprite.offset.x = -14
 
-			
-
 			$AnimatedSprite.play("sword")
 	
 	if $AnimatedSprite.animation == "sword":
 		for bob in $Melee.get_overlapping_bodies():
 			if bob.name.find("Slime") != -1:
 				bob.dead()
+	
+	#spawns a wall on left and right side of the player
+	if Input.is_action_just_pressed("ui_h"):
+		if is_attacking == false && wall_delay == false:
+			wall_delay = true
+			$WallTimer.start()
+			
+			
+			var clay_wall_left = CLAYSHIELD.instance()
+			get_parent().add_child(clay_wall_left)
+			clay_wall_left.position = $ClayWallLeft.global_position
+			clay_wall_left.play_animation()
+			
+			var clay_wall_right = CLAYSHIELD.instance()
+			get_parent().add_child(clay_wall_right)
+			clay_wall_right.position = $ClayWallRight.global_position
+			clay_wall_right.play_animation()
 	
 	# update score
 	# 145.5 is starting height
@@ -147,3 +166,7 @@ func _on_AnimatedSprite_animation_finished():
 
 func _on_MeleeTimer_timeout():
 	sword_delay = false
+
+
+func _on_WallTimer_timeout():
+	wall_delay = false

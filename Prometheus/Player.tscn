@@ -120,7 +120,7 @@ animations = [ {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": false,
 "name": "sword",
-"speed": 10.0
+"speed": 15.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -180,6 +180,9 @@ shape = SubResource( 29 )
 [node name="MeleeTimer" type="Timer" parent="."]
 wait_time = 0.4
 
+[node name="WallTimer" type="Timer" parent="."]
+wait_time = 3.0
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerStats" type="MarginContainer" parent="CanvasLayer"]
@@ -226,5 +229,12 @@ margin_bottom = 50.0
 custom_fonts/font = SubResource( 32 )
 text = "Kills: 4"
 
+[node name="ClayWallLeft" type="Position2D" parent="."]
+position = Vector2( -16, 0 )
+
+[node name="ClayWallRight" type="Position2D" parent="."]
+position = Vector2( 16, 0 )
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
 [connection signal="timeout" from="MeleeTimer" to="." method="_on_MeleeTimer_timeout"]
+[connection signal="timeout" from="WallTimer" to="." method="_on_WallTimer_timeout"]
