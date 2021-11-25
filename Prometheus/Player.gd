@@ -22,9 +22,11 @@ var previous_animation = "idle"
 var direction = "left"
 
 # can only attack every 0.4 seconds
+# works with $MeleeTimer
 var sword_delay = false
 
 # can only shield every 3 seconds
+# works with $WallTimer
 var wall_delay = false
 
 # score is determined by height + slimes killed
@@ -103,9 +105,9 @@ func _physics_process(delta):
 			$AnimatedSprite.play("sword")
 	
 	if $AnimatedSprite.animation == "sword":
-		for bob in $Melee.get_overlapping_bodies():
-			if bob.name.find("Slime") != -1:
-				bob.dead()
+		for obj in $Melee.get_overlapping_bodies():
+			if obj.name.find("Slime") != -1:
+				obj.dead()
 	
 	#spawns a wall on left and right side of the player
 	if Input.is_action_just_pressed("ui_h"):
@@ -113,6 +115,14 @@ func _physics_process(delta):
 			wall_delay = true
 			$WallTimer.start()
 			
+			# check areas left and right side of player if an enemy exists
+			# if so, then kill the enemy
+			for obj in $WallAreaCheckerLeft.get_overlapping_bodies():
+				if obj.name.find("Slime") != -1:
+					obj.dead()
+			for obj in $WallAreaCheckerRight.get_overlapping_bodies():
+				if obj.name.find("Slime") != -1:
+					obj.dead()
 			
 			var clay_wall_left = CLAYSHIELD.instance()
 			get_parent().add_child(clay_wall_left)
@@ -123,6 +133,8 @@ func _physics_process(delta):
 			get_parent().add_child(clay_wall_right)
 			clay_wall_right.position = $ClayWallRight.global_position
 			clay_wall_right.play_animation()
+			
+			
 	
 	# update score
 	# 145.5 is starting height

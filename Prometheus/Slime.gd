@@ -52,6 +52,8 @@ func _physics_process(delta):
 		if $RayCast2D.is_colliding() == false:
 			direction *= -1
 			$RayCast2D.position.x *= -1
+		
+		
 
 # slime disappears when he gets vaporized
 func _on_AnimatedSprite_animation_finished():
