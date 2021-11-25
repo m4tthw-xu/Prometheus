@@ -123,16 +123,27 @@ func _physics_process(delta):
 			for obj in $WallAreaCheckerRight.get_overlapping_bodies():
 				if obj.name.find("Slime") != -1:
 					obj.dead()
+			print($WallAreaCheckerLeft.get_overlapping_bodies())
 			
-			var clay_wall_left = CLAYSHIELD.instance()
-			get_parent().add_child(clay_wall_left)
-			clay_wall_left.position = $ClayWallLeft.global_position
-			clay_wall_left.play_animation()
+			var tile_exists = false
+			for obj in $WallAreaCheckerLeft.get_overlapping_bodies():
+				if obj.name.find("TileMap") != -1:
+					tile_exists = true
+			if tile_exists == false:
+				var clay_wall_left = CLAYSHIELD.instance()
+				get_parent().add_child(clay_wall_left)
+				clay_wall_left.position = $ClayWallLeft.global_position
+				clay_wall_left.play_animation()
 			
-			var clay_wall_right = CLAYSHIELD.instance()
-			get_parent().add_child(clay_wall_right)
-			clay_wall_right.position = $ClayWallRight.global_position
-			clay_wall_right.play_animation()
+			tile_exists = false
+			for obj in $WallAreaCheckerRight.get_overlapping_bodies():
+				if obj.name.find("TileMap") != -1:
+					tile_exists = true
+			if tile_exists == false:
+				var clay_wall_right = CLAYSHIELD.instance()
+				get_parent().add_child(clay_wall_right)
+				clay_wall_right.position = $ClayWallRight.global_position
+				clay_wall_right.play_animation()
 			
 			
 	
