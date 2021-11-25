@@ -109,7 +109,7 @@ func _physics_process(delta):
 	
 	#spawns a wall on left and right side of the player
 	if Input.is_action_just_pressed("ui_h"):
-		if is_attacking == false && wall_delay == false:
+		if is_attacking == false && wall_delay == false && on_ground == true:
 			wall_delay = true
 			$WallTimer.start()
 			
