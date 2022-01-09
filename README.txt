@@ -1,3 +1,6 @@
+#Documanetaojtn
+
+
 w: jump
 a: left
 d: right
