@@ -2,7 +2,7 @@
 This is a game made by Jonathan Lin, Hao Zheng, and Matthew Xu.
 
 # How to run
-*Insert stuff here*
+Download Prometheus.exe and double click on the executable file.
 
 # Concept
 This game is based off the Greek myth of Promethius, the one who gave humans the power of fire.
