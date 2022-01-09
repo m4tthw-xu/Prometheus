@@ -13,3 +13,6 @@ a: left
 d: right
 t: throw spear
 g: swing sword
+
+# Documantation
+The code is commented to make it readable.
