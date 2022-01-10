@@ -8,10 +8,10 @@ Download Prometheus.exe and double click on the executable file.
 This game is based off the Greek myth of Promethius, the one who gave humans the power of fire.
 
 # Controls
-w: jump
-a: left
-d: right
-t: throw spear
+w: jump | 
+a: left | 
+d: right | 
+t: throw spear | 
 g: swing sword
 
 # Documantation
