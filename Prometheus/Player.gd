@@ -31,6 +31,10 @@ var sword_delay = false
 # works with $WallTimer
 var wall_delay = false
 
+# can only use spear every 2 seconds
+# works with $SpearTimer
+var spear_delay = false
+
 # score is determined by height + slimes killed
 var score = 0
 var height = 0
@@ -53,8 +57,6 @@ func input_process(actor, event):
 			actor.jump
 
 func _physics_process(delta):
-	
-	
 	
 	if is_dead == false:
 	
@@ -95,8 +97,11 @@ func _physics_process(delta):
 		
 		# player can only attack after shooting animation completes
 		if Input.is_action_just_pressed("ui_t"):
-			if $AnimatedSprite.animation != "sword":
+			if $AnimatedSprite.animation != "sword" and spear_delay == false:
 				is_attacking = true
+				spear_delay = true
+				$SpearTimer.start()
+				
 				$AnimatedSprite.play("spear")
 				var spear = SPEAR.instance()
 				if sign($Position2D.position.x) == 1:
@@ -259,3 +264,7 @@ func _on_DeathTimer_timeout():
 
 func _on_DamageDelay_timeout():
 	can_take_damage = true
+
+
+func _on_SpearTimer_timeout():
+	spear_delay = false
