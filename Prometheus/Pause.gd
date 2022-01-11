@@ -2,7 +2,7 @@ extends Control
 
 
 func _input(event):
-	if event.is_action_pressed("ui_pause"):
+	if event.is_action_pressed("ui_pause") or event.is_action_pressed("ui_cancel"):
 		pause()
 
 
