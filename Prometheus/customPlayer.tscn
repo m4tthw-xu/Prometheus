@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="PlayerComp" type="Node2D"]
+
+[node name="Composite sprites" type="Node2D" parent="."]
+
+[node name="body" type="Sprite" parent="Composite sprites"]
+
+[node name="face" type="Sprite" parent="Composite sprites"]
+
+[node name="toga" type="Sprite" parent="Composite sprites"]
+
+[node name="eye" type="Sprite" parent="Composite sprites"]
+
+[node name="hair" type="Sprite" parent="Composite sprites"]
