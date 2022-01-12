@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/exitHover.png-234134d93ef59f0c7d4d8ed6ada11dfd.stex"
+path="res://.import/exithover.png-9a580dda7527f759814b6f38f63ce223.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/exitHover.png"
-dest_files=[ "res://.import/exitHover.png-234134d93ef59f0c7d4d8ed6ada11dfd.stex" ]
+source_file="res://Sprites/exithover.png"
+dest_files=[ "res://.import/exithover.png-9a580dda7527f759814b6f38f63ce223.stex" ]
 
 [params]
 
