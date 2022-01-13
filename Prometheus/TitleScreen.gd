@@ -23,3 +23,7 @@ func _on_ExitButton_pressed():
 
 func _on_ControlsButton_pressed():
 	get_tree().change_scene("res://Controls.tscn")
+
+
+func _on_CreditsButton_pressed():
+	get_tree().change_scene("res://Credits.tscn")
