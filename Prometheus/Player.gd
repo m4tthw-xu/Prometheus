@@ -48,6 +48,7 @@ var can_take_damage = true
 # used for the death function of the character
 var is_dead = false
 
+
 # this is for the passthrough function of platforms
 func input_process(actor, event):
 	if event.is_action_pressed(actor.jump):

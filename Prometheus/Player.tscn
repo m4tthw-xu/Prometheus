@@ -243,7 +243,7 @@ wait_time = 0.4
 wait_time = 3.0
 
 [node name="SpearTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.4
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
