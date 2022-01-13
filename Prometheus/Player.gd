@@ -128,6 +128,8 @@ func _physics_process(delta):
 			for obj in $Melee.get_overlapping_bodies():
 				if obj.name.find("Slime") != -1:
 					obj.dead()
+				if obj.name.find("Dionysus") != -1:
+					obj.dead()
 		
 		#spawns a wall on left and right side of the player
 		if Input.is_action_just_pressed("ui_h"):
@@ -197,6 +199,11 @@ func _physics_process(delta):
 			for obj in $BodyArea.get_overlapping_bodies():
 				if obj.name.find("Slime") != -1:
 					health = health - 10
+					can_take_damage = false
+					$DamageDelay.start(1)
+			for obj in $BodyArea.get_overlapping_areas():
+				if obj.name.find("DionysusBottle") != -1:
+					health = health -20
 					can_take_damage = false
 					$DamageDelay.start(1)
 	
