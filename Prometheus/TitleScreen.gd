@@ -14,8 +14,12 @@ func _physics_process(delta):
 
 
 func _on_StartButton_pressed():
-	get_tree().change_scene("StageOne.tscn")
+	get_tree().change_scene("res://Objective.tscn")
 
 
 func _on_ExitButton_pressed():
 	get_tree().quit()
+
+
+func _on_ControlsButton_pressed():
+	get_tree().change_scene("res://Controls.tscn")
