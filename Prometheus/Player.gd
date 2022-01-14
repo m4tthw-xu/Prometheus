@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-const SPEED = 85
+const SPEED = 70
 const GRAVITY = 30
 const JUMP_POWER = -350
 const FLOOR = Vector2(0,-1)
@@ -48,6 +48,30 @@ var can_take_damage = true
 # used for the death function of the character
 var is_dead = false
 
+# varriables for acceleration and gliding
+var time_start = 0
+var time_now = 0
+var time_elapsed = 0
+
+var current_speed = 0
+var modspeed = 0
+
+# establishes a start time for the player to accelerate
+func _ready():
+	time_start = 0
+	time_now = 0
+	time_elapsed = 0
+	time_start = OS.get_ticks_msec()
+	
+# tracks the time elapsed to calculate how the player accelerates
+func _time_process():
+	time_now = 0
+	time_now = OS.get_ticks_msec()
+	time_elapsed = 0
+	if time_elapsed > 1000:
+		time_elapsed = 1000
+	else:
+		time_elapsed = time_now - time_start
 
 # this is for the passthrough function of platforms
 func input_process(actor, event):
@@ -62,27 +86,56 @@ func _physics_process(delta):
 	
 		# running left and right animations and mechanics
 		# will not flip direction of sprite until the attack animation is done
-		if Input.is_action_pressed("ui_d"):
-			velocity.x = SPEED
+		if Input.is_action_pressed("ui_d") and !Input.is_action_pressed("ui_a"):
+			
+			_time_process()
+			
+			# acceleration algorithm: speeds up to a max speed of SPEED + 50
+			# 50 is the greatest added speed
+			modspeed = (time_elapsed / 12)
+			if modspeed > 50:
+				velocity.x = SPEED + 50
+				current_speed = SPEED + 50
+			else:
+				velocity.x = SPEED + modspeed
+				current_speed = SPEED + modspeed
+			
 			$Melee.position.x = 12
 			direction = "left"
 			if is_attacking == false:
 				$AnimatedSprite.play("run")
 			if sign($Position2D.position.x) == -1:
 				$Position2D.position.x *= -1
-		elif Input.is_action_pressed("ui_a"):
-			velocity.x = -SPEED
+				
+			if !Input.is_action_pressed("ui_d"):
+				_ready()
+		elif Input.is_action_pressed("ui_a") and !Input.is_action_pressed("ui_d"):
+			_time_process()
+			
+			modspeed = (time_elapsed / 12)
+			if modspeed > 50:
+				velocity.x = -SPEED - 50
+				current_speed = -SPEED - 50
+			else:
+				velocity.x = -SPEED - modspeed
+				current_speed = -SPEED - modspeed
+			
 			$Melee.position.x = -12
 			direction = "right"
 			if is_attacking == false:
 				$AnimatedSprite.play("run")
 			if sign($Position2D.position.x) == 1:
 				$Position2D.position.x *= -1
-		else:
+			
+			if !Input.is_action_pressed("ui_a"):
+				_ready()
+		elif !Input.is_action_pressed("ui_a") and !Input.is_action_pressed("ui_d"):
 			velocity.x = 0
 			if on_ground == true:
 				if is_attacking == false:
 					$AnimatedSprite.play("idle")
+			_ready()
+					
 		if is_attacking == false:
 			if direction == "left":
 				$AnimatedSprite.flip_h = false
@@ -180,8 +233,13 @@ func _physics_process(delta):
 		# jumping/falling animation
 		if is_on_floor():
 			on_ground = true
+			current_speed = 0
 		else:
 			on_ground = false
+			if direction == "left" and !Input.is_action_pressed("ui_d"):
+				velocity.x = current_speed / 1.5
+			elif direction == "right" and !Input.is_action_pressed("ui_a"):
+				velocity.x = current_speed / 1.5
 			if velocity.y <0:
 				if is_attacking == false:
 					$AnimatedSprite.play("jump")

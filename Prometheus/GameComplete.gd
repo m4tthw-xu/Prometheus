@@ -23,6 +23,9 @@ func _unhandled_input (event:InputEvent) -> void:
 
 func _physics_process(delta):
 	$PlayerName.text = user_input
+	
+	if Input.is_action_pressed("ui_accept"):
+		var hi = 2
 
 
 func _on_Warning_timeout():
