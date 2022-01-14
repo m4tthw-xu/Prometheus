@@ -4,13 +4,13 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$MarginContainer/VBoxContainer/VBoxContainer/StartButton.grab_focus()
+	$StartButton.grab_focus()
 
 func _physics_process(delta):
-	if $MarginContainer/VBoxContainer/VBoxContainer/StartButton.is_hovered() == true:
-		$MarginContainer/VBoxContainer/VBoxContainer/StartButton.grab_focus()
-	if $MarginContainer/VBoxContainer/VBoxContainer/ExitButton.is_hovered() == true:
-		$MarginContainer/VBoxContainer/VBoxContainer/ExitButton.grab_focus()
+	if $StartButton.is_hovered() == true:
+		$StartButton.grab_focus()
+	if $ExitButton.is_hovered() == true:
+		$ExitButton.grab_focus()
 
 
 func _on_StartButton_pressed():
@@ -27,3 +27,7 @@ func _on_ControlsButton_pressed():
 
 func _on_CreditsButton_pressed():
 	get_tree().change_scene("res://Credits.tscn")
+
+
+func _on_LeaderboardButton_pressed():
+	get_tree().change_scene("res://Leaderboard.tscn")
