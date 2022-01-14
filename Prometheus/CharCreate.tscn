@@ -1,6 +1,0 @@
-[gd_scene format=2]
-
-[node name="Node2D" type="Node2D"]
-
-[node name="Intro5(charactercreation)" type="Sprite" parent="."]
-position = Vector2( 160, 90 )
