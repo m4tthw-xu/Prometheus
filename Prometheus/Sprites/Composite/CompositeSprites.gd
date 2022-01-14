@@ -1,7 +1,7 @@
 extends Node
 
 
-var body_spriteSheet = {
+const body_spriteSheet = {
 	0:preload("res://Sprites/Composite/skin1.png"),
 	1:preload("res://Sprites/Composite/skin2.png"),
 	2:preload("res://Sprites/Composite/skin3.png"),
@@ -14,13 +14,13 @@ var body_spriteSheet = {
 
 #print(body_spriteSheet[0])
 
-var face_spriteSheet = {
+const face_spriteSheet = {
 	0:preload("res://Sprites/Composite/fh1.png"),
 	1:preload("res://Sprites/Composite/fh2.png"),
 	2:preload("res://Sprites/Composite/fh3.png"),
 	3:preload("res://Sprites/Composite/fh4.png")
 }
-var toga_spriteSheet = {
+const toga_spriteSheet = {
 	0:preload("res://Sprites/Composite/toga1.png"),
 	1:preload("res://Sprites/Composite/toga2.png"),
 	2:preload("res://Sprites/Composite/toga3.png"),
@@ -29,7 +29,7 @@ var toga_spriteSheet = {
 	5:preload("res://Sprites/Composite/toga6.png"),
 	6:preload("res://Sprites/Composite/toga7.png")
 }
-var eye_spriteSheet = {
+const eye_spriteSheet = {
 	0:preload("res://Sprites/Composite/eye1.png"),
 	1:preload("res://Sprites/Composite/eye2.png"),
 	2:preload("res://Sprites/Composite/eye3.png"),
@@ -37,7 +37,7 @@ var eye_spriteSheet = {
 	4:preload("res://Sprites/Composite/eye5.png"),
 	5:preload("res://Sprites/Composite/eye6.png")
 }
-var hair_spriteSheet = {
+const hair_spriteSheet = {
 	0:preload("res://Sprites/Composite/hair1.png"),
 	1:preload("res://Sprites/Composite/hair2.png"),
 	2:preload("res://Sprites/Composite/hair3.png"),
