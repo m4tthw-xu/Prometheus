@@ -58,7 +58,6 @@ func input_process(actor, event):
 			actor.jump
 
 func _physics_process(delta):
-	
 	if is_dead == false:
 	
 		# running left and right animations and mechanics

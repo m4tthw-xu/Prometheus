@@ -11,8 +11,8 @@ config_version=4
 [application]
 
 config/name="Prometheus"
-run/main_scene="res://StageThree.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Leaderboard.tscn"
+config/icon="res://Sprites/Title.png"
 
 [display]
 
@@ -22,6 +22,10 @@ window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
+
+[global]
+
+appllication=false
 
 [input]
 

@@ -1,0 +1,19 @@
+{name}
+{start_time}
+{end_time}
+{enemies_slain}
+####
+Hao Zheng
+600
+1000
+7
+####
+Jonathan Lin
+555
+650
+7
+###
+CrushedOnions
+500
+2000
+3

@@ -1,0 +1,116 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Leaderboard.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/orange kid.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Sprites/Backgrounds/forestback.png" type="Texture" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 26
+outline_color = Color( 0.835294, 0.0823529, 0.0823529, 1 )
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 8
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 12
+font_data = ExtResource( 2 )
+
+[node name="Leaderboard" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 320.0
+margin_bottom = 180.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="ColorRect"]
+position = Vector2( 161, -244 )
+scale = Vector2( 1.3, 1.3 )
+texture = ExtResource( 3 )
+
+[node name="LEADERBOARD" type="Label" parent="ColorRect"]
+margin_top = 10.0
+margin_right = 320.0
+margin_bottom = 37.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "LEADERBOARD"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player1" type="Label" parent="ColorRect"]
+margin_top = 50.0
+margin_right = 320.0
+margin_bottom = 70.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 2 )
+text = "1st: Jonathan Lin - 2000 points"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player2" type="Label" parent="ColorRect"]
+margin_top = 75.0
+margin_right = 320.0
+margin_bottom = 95.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 3 )
+text = "2nd: Matthew Xu - 2 points"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Player3" type="Label" parent="ColorRect"]
+margin_top = 100.0
+margin_right = 320.0
+margin_bottom = 114.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 4 )
+text = "3rd: Hao Zheng - 2 points"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Disclaimer" type="Label" parent="ColorRect"]
+margin_left = 35.0
+margin_top = 150.0
+margin_right = 285.0
+margin_bottom = 163.0
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "* Score is calculated based on enemies killed and time elapsed"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Escape" type="Label" parent="ColorRect"]
+margin_left = 110.0
+margin_top = 161.0
+margin_right = 210.0
+margin_bottom = 176.0
+custom_fonts/font = SubResource( 6 )
+text = "Press SPACE to exit"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
