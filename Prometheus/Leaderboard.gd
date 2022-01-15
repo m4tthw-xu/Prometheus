@@ -7,6 +7,9 @@ var y = 0
 
 func _ready():
 	$ColorRect/CurrentPlayer.text = ""
+	$ColorRect/Player1.text = ""
+	$ColorRect/Player2.text = ""
+	$ColorRect/Player3.text = ""
 
 var counter = 0
 
