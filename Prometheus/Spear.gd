@@ -34,11 +34,10 @@ func enemy_killed():
 		MasterData.enemies_slain_stage_three += 1
 
 func _on_Spear_body_entered(body):
-	if "Slime" in body.name:
-		enemy_killed()
-		body.dead()
-	if "Dionysus" in body.name:
-		enemy_killed()
-		body.dead()
+	for enemy_name in MasterData.enemy_names:
+		if enemy_name in body.name:
+			enemy_killed()
+			body.dead()
+	
 		
 	queue_free()

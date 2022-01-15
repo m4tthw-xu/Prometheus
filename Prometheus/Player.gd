@@ -186,12 +186,10 @@ func _physics_process(delta):
 		
 		if $AnimatedSprite.animation == "sword":
 			for obj in $Melee.get_overlapping_bodies():
-				if obj.name.find("Slime") != -1:
-					obj.dead()
-					enemy_slain()
-				if obj.name.find("Dionysus") != -1:
-					obj.dead()
-					enemy_slain()
+				for enemy_name in MasterData.enemy_names:
+					if obj.name.find(enemy_name) != -1:
+						obj.dead()
+						enemy_slain()
 		
 		#spawns a wall on left and right side of the player
 		if Input.is_action_just_pressed("ui_h"):
@@ -264,39 +262,39 @@ func _physics_process(delta):
 		if can_take_damage == true:
 			for obj in $BodyArea.get_overlapping_bodies():
 				if obj.name.find("Slime") != -1:
-					health = health - 10
+					MasterData.health = MasterData.health - 10
 					can_take_damage = false
 					$DamageDelay.start(1)
 			for obj in $BodyArea.get_overlapping_areas():
 				if obj.name.find("DionysusBottle") != -1:
-					health = health -20
+					MasterData.health = MasterData.health -20
 					can_take_damage = false
 					$DamageDelay.start(1)
 	
 	# display
-	if health <= 90:
+	if MasterData.health <= 90:
 		$CanvasLayer/PlayerStats/heart5.set_texture(HALF_HEART)
-	if health <= 80:
+	if MasterData.health <= 80:
 		$CanvasLayer/PlayerStats/heart5.set_texture(null)
-	if health <= 70:
+	if MasterData.health <= 70:
 		$CanvasLayer/PlayerStats/heart4.set_texture(HALF_HEART)
-	if health <= 60:
+	if MasterData.health <= 60:
 		$CanvasLayer/PlayerStats/heart4.set_texture(null)
-	if health <= 50:
+	if MasterData.health <= 50:
 		$CanvasLayer/PlayerStats/heart3.set_texture(HALF_HEART)
-	if health <= 40:
+	if MasterData.health <= 40:
 		$CanvasLayer/PlayerStats/heart3.set_texture(null)
-	if health <= 30:
+	if MasterData.health <= 30:
 		$CanvasLayer/PlayerStats/heart2.set_texture(HALF_HEART)
-	if health <= 20:
+	if MasterData.health <= 20:
 		$CanvasLayer/PlayerStats/heart2.set_texture(null)
-	if health <= 10:
+	if MasterData.health <= 10:
 		$CanvasLayer/PlayerStats/heart1.set_texture(HALF_HEART)
-	if health <= 0:
+	if MasterData.health <= 0:
 		$CanvasLayer/PlayerStats/heart1.set_texture(null)
 	
 	# death function
-	if health <= 0:
+	if MasterData.health <= 0:
 		dead()
 		
 	
@@ -342,7 +340,7 @@ func _on_WallTimer_timeout():
 
 
 func _on_DeathTimer_timeout():
-	get_tree().change_scene("res://StageOne.tscn")
+	get_tree().change_scene("res://" + get_tree().get_current_scene().name + ".tscn")
 
 
 func _on_DamageDelay_timeout():

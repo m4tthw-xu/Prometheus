@@ -7,3 +7,4 @@ func _ready():
 	MasterData.enemies_slain_stage_one = 0
 	MasterData.enemies_slain_stage_two = 0
 	MasterData.enemies_slain_stage_three = 0
+	MasterData.health = 100
