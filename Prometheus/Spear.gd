@@ -25,9 +25,20 @@ func _physics_process(delta):
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
+func enemy_killed():
+	if get_tree().get_current_scene().name == "StageOne":
+		MasterData.enemies_slain_stage_one += 1
+	if get_tree().get_current_scene().name == "StageTwo":
+		MasterData.enemies_slain_stage_two += 1
+	if get_tree().get_current_scene().name == "StageThree":
+		MasterData.enemies_slain_stage_three += 1
 
 func _on_Spear_body_entered(body):
 	if "Slime" in body.name:
+		enemy_killed()
+		body.dead()
+	if "Dionysus" in body.name:
+		enemy_killed()
 		body.dead()
 		
 	queue_free()
