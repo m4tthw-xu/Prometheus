@@ -3,17 +3,17 @@
 {end_time}
 {enemies_slain}
 ####
-Hao Zheng
-600
-1000
-7
-####
-Jonathan Lin
-555
-650
-7
-###
-CrushedOnions
+Crushed Onions
 500
 2000
 3
+####
+Sliced Potatoes
+1642227674
+1642227728
+6
+####
+Chirpping Bird
+1642227881
+1642227919
+5

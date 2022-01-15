@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Tile_Sets/SnowyTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Sprites/Backgrounds/snowyback.png" type="Texture" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ChangeStage.tscn" type="PackedScene" id=4]
+[ext_resource path="res://StageThree.gd" type="Script" id=5]
 
 [node name="StageThree" type="Node2D"]
+script = ExtResource( 5 )
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -26,6 +28,6 @@ tile_data = PoolIntArray( 65535, 7, 0, 20, 7, 0, 131071, 7, 0, 65541, 0, 0, 6554
 position = Vector2( 42, 160 )
 
 [node name="ChangeStage" parent="." instance=ExtResource( 4 )]
-position = Vector2( 152, 144 )
+position = Vector2( 158, 144 )
 scale = Vector2( 2, 2 )
-target_stage = "res://StageThree.tscn"
+target_stage = "res://GameComplete.tscn"

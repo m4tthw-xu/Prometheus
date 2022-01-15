@@ -11,6 +11,10 @@ const CLAYSHIELD = preload("res://ClayShield.tscn")
 const HALF_HEART = preload("res://sprites/half_heart.png")
 const FULL_HEART = preload("res://sprites/full_heart.png")
 
+var StageOne = preload("res://StageOne.gd")
+var StageTwo = preload("res://StageTwo.gd")
+var StageThree = preload("res://StageThree.gd")
+
 var velocity = Vector2()
 
 var on_ground = false
@@ -62,7 +66,8 @@ func _ready():
 	time_now = 0
 	time_elapsed = 0
 	time_start = OS.get_ticks_msec()
-	
+
+
 # tracks the time elapsed to calculate how the player accelerates
 func _time_process():
 	time_now = 0
@@ -82,6 +87,9 @@ func input_process(actor, event):
 			actor.jump
 
 func _physics_process(delta):
+	
+	$CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer/Kills.text = "Kills: " + str(MasterData.enemies_slain_stage_one + MasterData.enemies_slain_stage_two + MasterData.enemies_slain_stage_three)
+	
 	if is_dead == false:
 	
 		# running left and right animations and mechanics
@@ -180,8 +188,10 @@ func _physics_process(delta):
 			for obj in $Melee.get_overlapping_bodies():
 				if obj.name.find("Slime") != -1:
 					obj.dead()
+					enemy_slain()
 				if obj.name.find("Dionysus") != -1:
 					obj.dead()
+					enemy_slain()
 		
 		#spawns a wall on left and right side of the player
 		if Input.is_action_just_pressed("ui_h"):
@@ -197,7 +207,6 @@ func _physics_process(delta):
 				for obj in $WallAreaCheckerRight.get_overlapping_bodies():
 					if obj.name.find("Slime") != -1:
 						obj.dead()
-				print($WallAreaCheckerLeft.get_overlapping_bodies())
 				
 				var tile_exists = false
 				for obj in $WallAreaCheckerLeft.get_overlapping_bodies():
@@ -289,8 +298,17 @@ func _physics_process(delta):
 	# death function
 	if health <= 0:
 		dead()
+		
 	
 # pass through platform function tutorial: https://www.youtube.com/watch?v=T704Zrlye2k&ab_channel=Pigdev
+
+func enemy_slain():
+	if get_tree().get_current_scene().name == "StageOne":
+		MasterData.enemies_slain_stage_one += 1
+	if get_tree().get_current_scene().name == "StageTwo":
+		MasterData.enemies_slain_stage_two += 1
+	if get_tree().get_current_scene().name == "StageThree":
+		MasterData.enemies_slain_stage_three += 1
 
 func dead():
 	is_dead = true

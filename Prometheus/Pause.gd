@@ -20,6 +20,10 @@ func _on_Resume_pressed():
 
 func _on_Restart_pressed():
 	pause()
+	if get_tree().get_current_scene().name == "StageTwo":
+		MasterData.enemies_slain_stage_two = 0
+	if get_tree().get_current_scene().name == "StageThree":
+		MasterData.enemies_slain_stage_three = 0
 	get_tree().change_scene("res://" + get_tree().get_current_scene().name + ".tscn")
 
 

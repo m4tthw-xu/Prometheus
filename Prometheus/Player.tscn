@@ -197,6 +197,7 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -292,20 +293,21 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PlayerStats/HBoxContainer"]
-margin_right = 46.0
+margin_right = 22.0
 margin_bottom = 175.0
 custom_constants/separation = 0
 
 [node name="Score" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
+visible = false
 margin_right = 46.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 30 )
 text = "Score: 7"
 
 [node name="Height" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
-margin_top = 20.0
-margin_right = 46.0
-margin_bottom = 35.0
+visible = false
+margin_right = 31.0
+margin_bottom = 15.0
 custom_fonts/font = SubResource( 31 )
 text = "Height: 3"
 __meta__ = {
@@ -313,9 +315,8 @@ __meta__ = {
 }
 
 [node name="Kills" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
-margin_top = 35.0
-margin_right = 46.0
-margin_bottom = 50.0
+margin_right = 22.0
+margin_bottom = 15.0
 custom_fonts/font = SubResource( 32 )
 text = "Kills: 4"
 

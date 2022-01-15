@@ -32,6 +32,7 @@ func _physics_process(delta):
 			$AttackTimer.start()
 
 func dead():
+	$CollisionShape2D.disabled = true
 	$AnimatedSprite.play("dead")
 	previous_animation = "dead"
 

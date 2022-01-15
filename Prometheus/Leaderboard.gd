@@ -5,7 +5,8 @@ var loadedFile:File = File.new()
 var velocity = Vector2()
 var y = 0
 
-#simply adding a filler
+func _ready():
+	$ColorRect/CurrentPlayer.text = ""
 
 var counter = 0
 
@@ -78,13 +79,27 @@ func _physics_process(delta):
 	
 	# places the sorted information onto the screen
 	if sorted_data.size() > 0:
-		$ColorRect/Player1.text = "1st: " + sorted_data[0]["name"] + " - " + str(sorted_data[0]["final_score"]) + " points"
+		$ColorRect/Player1.text = "#1: " + sorted_data[0]["name"] + " - " + str(sorted_data[0]["final_score"]) + " points"
 	if sorted_data.size() > 1:
-		$ColorRect/Player2.text = "2nd: " + sorted_data[1]["name"] + " - " + str(sorted_data[1]["final_score"]) + " points"
+		$ColorRect/Player2.text = "#2: " + sorted_data[1]["name"] + " - " + str(sorted_data[1]["final_score"]) + " points"
 	if sorted_data.size() > 2:
-		$ColorRect/Player3.text = "3rd: " + sorted_data[2]["name"] + " - " + str(sorted_data[2]["final_score"]) + " points"
+		$ColorRect/Player3.text = "#3: " + sorted_data[2]["name"] + " - " + str(sorted_data[2]["final_score"]) + " points"
 	
-	#velocity.y += 5
+	# places the current information on the screen
+	var leaderboard_names = []
+	if sorted_data.size() > 0:
+		leaderboard_names.append(sorted_data[0]["name"])
+	if sorted_data.size() > 1:
+		leaderboard_names.append(sorted_data[1]["name"])
+	if sorted_data.size() > 2:
+		leaderboard_names.append(sorted_data[2]["name"])
+	if !leaderboard_names.has(MasterData.player_name):
+		var sorted_names = []
+		for obj in sorted_data:
+			sorted_names.append(obj["name"])
+		$ColorRect/CurrentPlayer.text = "#" + str(sorted_names.find(MasterData.player_name) + 1) + ": " + MasterData.player_name + " (you) - " + str(MasterData.final_score) + " points"
+	
+	# moving background
 	if $ColorRect/Sprite.position.y >= 300:
 		$ColorRect/Sprite.position.y = -244
 	$ColorRect/Sprite.position.y +=  0.13# Sets the position of Y to 20

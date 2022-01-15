@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://GameComplete.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/orange kid.ttf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=2]
 size = 21
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -16,6 +22,10 @@ size = 18
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=7]
 size = 12
 font_data = ExtResource( 2 )
 
@@ -40,10 +50,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="NamePrompt" type="Label" parent="."]
+[node name="EnemiesSlain" type="Label" parent="."]
+margin_top = 42.0
+margin_right = 320.0
+margin_bottom = 62.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 5 )
+text = "Total Enemies Slain: 14"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FinalScore" type="Label" parent="."]
 margin_top = 58.0
 margin_right = 320.0
 margin_bottom = 78.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 6 )
+text = "Final Score: 83"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NamePrompt" type="Label" parent="."]
+margin_top = 84.0
+margin_right = 320.0
+margin_bottom = 108.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 3 )
 text = "What is your name?"
@@ -54,9 +88,9 @@ __meta__ = {
 
 [node name="PlayerName" type="Label" parent="."]
 margin_left = 20.0
-margin_top = 83.0
+margin_top = 105.0
 margin_right = 300.0
-margin_bottom = 103.0
+margin_bottom = 127.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 1 )
 text = "<Player Name Here>"
@@ -66,10 +100,9 @@ __meta__ = {
 }
 
 [node name="CharacterWarning" type="Label" parent="."]
-visible = false
-margin_top = 109.0
+margin_top = 127.0
 margin_right = 320.0
-margin_bottom = 123.0
+margin_bottom = 142.0
 custom_colors/font_color = Color( 1, 0.552941, 0, 1 )
 custom_fonts/font = SubResource( 4 )
 text = "Warning: 20 character limit"
@@ -78,7 +111,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="MinCharacterWarning" type="Label" parent="."]
+margin_top = 141.0
+margin_right = 320.0
+margin_bottom = 156.0
+custom_colors/font_color = Color( 1, 0.552941, 0, 1 )
+custom_fonts/font = SubResource( 7 )
+text = "Please type your name"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Warning" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="TooShortWarning" type="Timer" parent="."]
+wait_time = 2.0
+
 [connection signal="timeout" from="Warning" to="." method="_on_Warning_timeout"]
+[connection signal="timeout" from="TooShortWarning" to="." method="_on_Timer_timeout"]
