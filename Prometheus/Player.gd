@@ -66,6 +66,8 @@ func _ready():
 	time_now = 0
 	time_elapsed = 0
 	time_start = OS.get_ticks_msec()
+	if get_tree().get_current_scene().name == "Multiplayer":
+		$Camera2D.limit_top = 0
 
 
 # tracks the time elapsed to calculate how the player accelerates
@@ -200,11 +202,13 @@ func _physics_process(delta):
 				# check areas left and right side of player if an enemy exists
 				# if so, then kill the enemy
 				for obj in $WallAreaCheckerLeft.get_overlapping_bodies():
-					if obj.name.find("Slime") != -1:
-						obj.dead()
+					for enemy_name in MasterData.enemy_names:
+						if enemy_name in obj.name:
+							obj.dead()
 				for obj in $WallAreaCheckerRight.get_overlapping_bodies():
-					if obj.name.find("Slime") != -1:
-						obj.dead()
+					for enemy_name in MasterData.enemy_names:
+						if enemy_name in obj.name:
+							obj.dead()
 				
 				var tile_exists = false
 				for obj in $WallAreaCheckerLeft.get_overlapping_bodies():

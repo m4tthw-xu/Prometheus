@@ -15,6 +15,7 @@ var end_time = 0
 var final_score = 0
 
 var health = 100
+var health_p2 = 100
 
 func _ready():
 	pass
