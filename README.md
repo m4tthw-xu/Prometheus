@@ -1,18 +1,30 @@
-# Promethius
-This is a game made by Jonathan Lin, Hao Zheng, and Matthew Xu.
+# Prometheus
+This is a game made by Jonathan Lin, Hao Zheng, and Matthew Xu from James E. Taylor High School. This is our submission for the FBLA Computer Game & Simulation Programming event for 2021-2022.
 
 # How to run
-Download Prometheus.exe and double click on the executable file.
+Download "`Prometheus.exe`" and "`Prometheus.pck`". Ensure that both of these files are in the same folder. Then, double click on the executable file to run the game.
 
-# Concept
-This game is based off the Greek myth of Promethius, the one who gave humans the power of fire.
+# Theme
+This game is based off the Greek myth of Prometheus - the one who stole climbed Mt. Olympus to steal fire from the gods and give to humans.
+
+# Objective
+
+The objective of our game is to climb upward for each level and reach the portals at the top, simulating Prometheus climbing Mt. Olympus. To achieve the highest score, kill the highest number of enemies in the least amount of time. A greater amount of time taken to complete the game will result in a lower final score.
 
 # Controls
-w: jump | 
-a: left | 
-d: right | 
-t: throw spear | 
+w: jump
+a: left
+d: right
+t: throw spear
 g: swing sword
 
-# Documantation
-The code is commented to make it readable.
+# Disclaimer
+
+ALL levels ARE doable, though each level increases in difficulty.
+
+# Documentation
+There are comments to increase code readibility.
+
+# Copyright
+
+All art seen in the game was created in house by us. The Godot licensing agreement allows game developers FULL control over games developed with the Godot game engine. In other words, we have full copyright and licensing rights.

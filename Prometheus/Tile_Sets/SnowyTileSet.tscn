@@ -253,7 +253,10 @@ __meta__ = {
 }
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Ground12"]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground12/StaticBody2D"]
 visible = false
 shape = SubResource( 2 )
+one_way_collision = true

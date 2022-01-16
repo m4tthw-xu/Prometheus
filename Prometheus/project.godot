@@ -12,6 +12,7 @@ config_version=4
 
 config/name="Prometheus"
 run/main_scene="res://StageTwo.tscn"
+boot_splash/image="res://Sprites/boot_splash.png"
 config/icon="res://Sprites/Title.png"
 
 [autoload]

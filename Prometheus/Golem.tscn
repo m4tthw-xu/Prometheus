@@ -1,13 +1,9 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Sprites/rockgolem-attack96x48.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/rockgolem48x48.png" type="Texture" id=2]
 [ext_resource path="res://Golem.gd" type="Script" id=3]
 [ext_resource path="res://Sprites/rockgolem-death48x48.png" type="Texture" id=4]
-
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 96, 48 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
@@ -103,10 +99,10 @@ region = Rect2( 48, 48, 48, 48 )
 
 [sub_resource type="SpriteFrames" id=14]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
 "loop": false,
 "name": "attack",
-"speed": 7.0
+"speed": 12.0
 }, {
 "frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 23 ), SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ) ],
 "loop": false,
@@ -126,7 +122,7 @@ extents = Vector2( 22, 24 )
 extents = Vector2( 22, 24 )
 
 [sub_resource type="RectangleShape2D" id=28]
-extents = Vector2( 20, 20 )
+extents = Vector2( 19, 20 )
 
 [node name="Golem" type="KinematicBody2D"]
 script = ExtResource( 3 )
@@ -134,7 +130,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 14 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -153,8 +149,7 @@ visible = false
 shape = SubResource( 16 )
 
 [node name="Melee" type="Area2D" parent="."]
-visible = false
-position = Vector2( -48, 0 )
+position = Vector2( -44, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Melee"]
 shape = SubResource( 28 )

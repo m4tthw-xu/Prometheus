@@ -62,10 +62,10 @@ func _physics_process(delta):
 			# flip_h property is reversed on how it normally should be
 			if direction == 1:
 				$AnimatedSprite.flip_h = true
-				$Melee.position.x = 48
+				$Melee.position.x = 44
 			if direction == -1:
 				$AnimatedSprite.flip_h = false
-				$Melee.position.x = -48
+				$Melee.position.x = -44
 				
 			
 			velocity.y += GRAVITY
