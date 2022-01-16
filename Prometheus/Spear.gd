@@ -36,8 +36,9 @@ func enemy_killed():
 func _on_Spear_body_entered(body):
 	for enemy_name in MasterData.enemy_names:
 		if enemy_name in body.name:
-			enemy_killed()
 			body.dead()
+			enemy_killed()
+			
 	
 		
 	queue_free()

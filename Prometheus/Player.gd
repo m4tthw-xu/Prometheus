@@ -101,7 +101,7 @@ func _physics_process(delta):
 			# acceleration algorithm: speeds up to a max speed of SPEED + 50
 			# 50 is the greatest added speed
 			modspeed = (time_elapsed / 12)
-			if modspeed > 50:
+			if modspeed > 65:
 				velocity.x = SPEED + 50
 				current_speed = SPEED + 50
 			else:
@@ -187,7 +187,7 @@ func _physics_process(delta):
 		if $AnimatedSprite.animation == "sword":
 			for obj in $Melee.get_overlapping_bodies():
 				for enemy_name in MasterData.enemy_names:
-					if obj.name.find(enemy_name) != -1:
+					if enemy_name in obj.name:
 						obj.dead()
 						enemy_slain()
 		

@@ -21,9 +21,9 @@ func dead():
 	$MeleeCooldown.stop()
 	is_dead = true
 	velocity = Vector2(0,0)
-	$CollisionShape2D.disabled = true	
+	$CollisionShape2D.disabled = true
 	$AnimatedSprite.position.x = 0
-			
+
 	$AnimatedSprite.play("dead")
 	
 	# will increase the player's kill count by 1 when slime dies
