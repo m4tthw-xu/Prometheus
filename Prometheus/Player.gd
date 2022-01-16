@@ -66,8 +66,22 @@ func _ready():
 	time_now = 0
 	time_elapsed = 0
 	time_start = OS.get_ticks_msec()
-	if get_tree().get_current_scene().name == "Multiplayer":
+	
+	# have to change some settings if it's multiplayer
+	if get_tree().get_current_scene().name.find("Multiplayer") != -1:
 		$Camera2D.limit_top = 0
+		$CanvasLayer/PlayerStats/heart1.position.x = 6
+		$CanvasLayer/PlayerStats/heart1.position.y = 6
+		$CanvasLayer/PlayerStats/heart2.position.x = 16
+		$CanvasLayer/PlayerStats/heart2.position.y = 6
+		$CanvasLayer/PlayerStats/heart3.position.x = 26
+		$CanvasLayer/PlayerStats/heart3.position.y = 6
+		$CanvasLayer/PlayerStats/heart4.position.x = 36
+		$CanvasLayer/PlayerStats/heart4.position.y = 6
+		$CanvasLayer/PlayerStats/heart5.position.x = 46
+		$CanvasLayer/PlayerStats/heart5.position.y = 6
+		$CanvasLayer/PlayerStats/HBoxContainer.visible = false
+		
 
 
 # tracks the time elapsed to calculate how the player accelerates
@@ -89,6 +103,8 @@ func input_process(actor, event):
 			actor.jump
 
 func _physics_process(delta):
+	
+	
 	
 	$CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer/Kills.text = "Kills: " + str(MasterData.enemies_slain_stage_one + MasterData.enemies_slain_stage_two + MasterData.enemies_slain_stage_three)
 	
@@ -185,6 +201,9 @@ func _physics_process(delta):
 					$AnimatedSprite.offset.x = -14
 
 				$AnimatedSprite.play("sword")
+				for obj in $Melee.get_overlapping_bodies():
+					if obj.name.find("Player2") != -1:
+						MasterData.health_p2 = MasterData.health_p2 - 20
 		
 		if $AnimatedSprite.animation == "sword":
 			for obj in $Melee.get_overlapping_bodies():
@@ -192,6 +211,7 @@ func _physics_process(delta):
 					if enemy_name in obj.name:
 						obj.dead()
 						enemy_slain()
+				
 		
 		#spawns a wall on left and right side of the player
 		if Input.is_action_just_pressed("ui_h"):
@@ -276,6 +296,13 @@ func _physics_process(delta):
 					$DamageDelay.start(1)
 	
 	# display
+	if MasterData.health == 100:
+		$CanvasLayer/PlayerStats/heart5.set_texture(FULL_HEART)
+		$CanvasLayer/PlayerStats/heart4.set_texture(FULL_HEART)
+		$CanvasLayer/PlayerStats/heart3.set_texture(FULL_HEART)
+		$CanvasLayer/PlayerStats/heart2.set_texture(FULL_HEART)
+		$CanvasLayer/PlayerStats/heart1.set_texture(FULL_HEART)
+	
 	if MasterData.health <= 90:
 		$CanvasLayer/PlayerStats/heart5.set_texture(HALF_HEART)
 	if MasterData.health <= 80:
@@ -313,11 +340,13 @@ func enemy_slain():
 		MasterData.enemies_slain_stage_three += 1
 
 func dead():
-	is_dead = true
 	
-	
-	if $AnimatedSprite.animation != "death":
+	if $AnimatedSprite.animation != "death" and previous_animation != "death":
+		is_dead = true
 		$AnimatedSprite.play("death")
+		
+		if get_tree().get_current_scene().name.find("Multiplayer") != -1:
+			MasterData.kills_p2 = MasterData.kills_p2 + 1
 	previous_animation = "death"
 	
 
@@ -330,8 +359,14 @@ func _on_AnimatedSprite_animation_finished():
 	if previous_animation == "spear" or previous_animation == "sword":
 		is_attacking = false
 	if previous_animation == "death":
-		$CollisionShape2D.disabled = true
-		$DeathTimer.start()
+		$CollisionShape2D.disabled = false
+		position.x = 16
+		position.y = 160
+		MasterData.health = 100
+		is_dead = false
+		
+		$AnimatedSprite.play("idle")
+		previous_animation == "idle"
 
 
 
@@ -344,7 +379,8 @@ func _on_WallTimer_timeout():
 
 
 func _on_DeathTimer_timeout():
-	get_tree().change_scene("res://" + get_tree().get_current_scene().name + ".tscn")
+	if get_tree().get_current_scene().name.find("Stage") != -1:
+		get_tree().change_scene("res://" + get_tree().get_current_scene().name + ".tscn")
 
 
 func _on_DamageDelay_timeout():

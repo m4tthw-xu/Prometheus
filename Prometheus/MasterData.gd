@@ -15,7 +15,11 @@ var end_time = 0
 var final_score = 0
 
 var health = 100
+
+# for multiplayer
 var health_p2 = 100
+var kills_p1 = 0
+var kills_p2 = 0
 
 func _ready():
 	pass

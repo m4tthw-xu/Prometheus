@@ -38,7 +38,8 @@ func _on_Spear_body_entered(body):
 		if enemy_name in body.name:
 			body.dead()
 			enemy_killed()
-			
+	if body.name.find("Player2") != -1:
+		MasterData.health_p2 = MasterData.health_p2 - 20
 	
 		
 	queue_free()

@@ -39,3 +39,7 @@ func _on_CreditsButton_pressed():
 
 func _on_LeaderboardButton_pressed():
 	get_tree().change_scene("res://Leaderboard.tscn")
+
+
+func _on_MultiplayerButton_pressed():
+	get_tree().change_scene("res://Multiplayer.tscn")
