@@ -1,4 +1,4 @@
-# Promethius
+# Prometheus
 This is a game made by Jonathan Lin, Hao Zheng, and Matthew Xu.
 
 # How to run
