@@ -18,9 +18,11 @@ a: left
 
 d: right
 
-t: throw spear
+x: swing sword (melee)
 
-g: swing sword
+c: throw spear (long range)
+
+v: spawn walls (defense)
 
 ### Multiplayer
 
