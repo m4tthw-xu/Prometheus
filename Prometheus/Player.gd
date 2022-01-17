@@ -215,14 +215,13 @@ func _physics_process(delta):
 				$AnimatedSprite.play("sword")
 				for obj in $Melee.get_overlapping_bodies():
 					if obj.name.find("Player2") != -1:
-						MasterData.health_p2 = MasterData.health_p2 - 20
-		
-		if $AnimatedSprite.animation == "sword":
-			for obj in $Melee.get_overlapping_bodies():
-				for enemy_name in MasterData.enemy_names:
-					if enemy_name in obj.name:
-						obj.dead()
-						enemy_slain()
+						MasterData.health_p2 = MasterData.health_p2 - 20\
+				
+				for obj in $Melee.get_overlapping_bodies():
+					for enemy_name in MasterData.enemy_names:
+						if enemy_name in obj.name:
+							obj.dead()
+							enemy_slain()
 				
 		
 		#spawns a wall on left and right side of the player
