@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tile_Sets/ForestTileSet.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ChangeStage.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=6]
 [ext_resource path="res://StageOne.gd" type="Script" id=7]
+[ext_resource path="res://Music/ForestBack.mp3" type="AudioStream" id=8]
 [ext_resource path="res://Gods/Dionysus.tscn" type="PackedScene" id=11]
 
 [node name="StageOne" type="Node2D"]
@@ -57,3 +58,7 @@ target_stage = "res://StageTwo.tscn"
 
 [node name="Dionysus" parent="." instance=ExtResource( 11 )]
 position = Vector2( 200, -432 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+autoplay = true
