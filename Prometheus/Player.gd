@@ -81,7 +81,11 @@ func _ready():
 		$CanvasLayer/PlayerStats/heart5.position.x = 46
 		$CanvasLayer/PlayerStats/heart5.position.y = 6
 		$CanvasLayer/PlayerStats/HBoxContainer.visible = false
-		
+		$CanvasLayer/PlayerStats/heart5.flip_h = true
+		$CanvasLayer/PlayerStats/heart4.flip_h = true
+		$CanvasLayer/PlayerStats/heart3.flip_h = true
+		$CanvasLayer/PlayerStats/heart2.flip_h = true
+		$CanvasLayer/PlayerStats/heart1.flip_h = true
 
 
 # tracks the time elapsed to calculate how the player accelerates

@@ -34,14 +34,12 @@ L: left
 
 ]: melee
 
-
-
 # Disclaimer
 
 ALL levels ARE doable, though each level increases in difficulty.
 
 # Documentation
-There are comments to increase code readibility.
+There are comments to increase code readibility. Our game structure is divided into "scenes" and "scripts." Scene files end in in the ".tscn" file extension while scripts end in the ".gd" file extension. Scenes help us visualize the changes we make to the game, while scripts help to control the background logic that controls the players, physics, calculations, etc. Most of our game's background logic is contained inside the file "player.gd"
 
 # Copyright & Licensing
 
