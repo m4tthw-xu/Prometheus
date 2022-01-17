@@ -2,7 +2,7 @@
 This is a game made by Jonathan Lin, Hao Zheng, and Matthew Xu from James E. Taylor High School. This is our submission for the FBLA Computer Game & Simulation Programming event for 2021-2022.
 
 # How to run
-Download "`Prometheus.exe`" and "`Prometheus.pck`". Ensure that both of these files are in the same folder. Then, double click on the executable file to run the game.
+Download "`Prometheus.exe`" and "`Prometheus.pck`". Ensure that both of these files are in the same folder. Then, double click on the executable file to run the game. Although judges will have access to the source code, it is not needed. Everything needed for the game is exported into the .exe and supporting .pck file.
 
 # Theme
 This game is based off the Greek myth of Prometheus - the one who stole climbed Mt. Olympus to steal fire from the gods and give to humans.

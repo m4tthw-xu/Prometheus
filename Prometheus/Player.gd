@@ -69,7 +69,10 @@ func _ready():
 	
 	# have to change some settings if it's multiplayer
 	if get_tree().get_current_scene().name.find("Multiplayer") != -1:
+		# this makes it so that the camera will not move
 		$Camera2D.limit_top = 0
+		
+		# moves all the player's hearts to the top left of the screen so that player 2's hearts can go on the top right
 		$CanvasLayer/PlayerStats/heart1.position.x = 6
 		$CanvasLayer/PlayerStats/heart1.position.y = 6
 		$CanvasLayer/PlayerStats/heart2.position.x = 16
@@ -80,7 +83,10 @@ func _ready():
 		$CanvasLayer/PlayerStats/heart4.position.y = 6
 		$CanvasLayer/PlayerStats/heart5.position.x = 46
 		$CanvasLayer/PlayerStats/heart5.position.y = 6
+		
+		# removes the kill counter
 		$CanvasLayer/PlayerStats/HBoxContainer.visible = false
+		
 		$CanvasLayer/PlayerStats/heart5.flip_h = true
 		$CanvasLayer/PlayerStats/heart4.flip_h = true
 		$CanvasLayer/PlayerStats/heart3.flip_h = true
@@ -106,8 +112,8 @@ func input_process(actor, event):
 		else:
 			actor.jump
 
+# this function runs repeatedly
 func _physics_process(delta):
-	
 	
 	
 	$CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer/Kills.text = "Kills: " + str(MasterData.enemies_slain_stage_one + MasterData.enemies_slain_stage_two + MasterData.enemies_slain_stage_three)
@@ -121,7 +127,7 @@ func _physics_process(delta):
 			_time_process()
 			
 			# acceleration algorithm: speeds up to a max speed of SPEED + 50
-			# 50 is the greatest added speed
+			# 65 is the greatest added speed
 			modspeed = (time_elapsed / 12)
 			if modspeed > 65:
 				velocity.x = SPEED + 50
@@ -142,6 +148,7 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_a") and !Input.is_action_pressed("ui_d"):
 			_time_process()
 			
+			# for acceleration
 			modspeed = (time_elapsed / 12)
 			if modspeed > 50:
 				velocity.x = -SPEED - 50
@@ -150,6 +157,7 @@ func _physics_process(delta):
 				velocity.x = -SPEED - modspeed
 				current_speed = -SPEED - modspeed
 			
+			# ensures the hitboxes and player are facing the correct direction
 			$Melee.position.x = -12
 			direction = "right"
 			if is_attacking == false:
