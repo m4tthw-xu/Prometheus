@@ -21,5 +21,11 @@ var health_p2 = 100
 var kills_p1 = 0
 var kills_p2 = 0
 
+var player_x_pos = 0
+var zeus_x_pos = 0
+var zeus_facing = "left"
+
+var spear_charges = 4
+
 func _ready():
 	pass

@@ -63,20 +63,6 @@ func _physics_process(delta):
 		
 		data.append(new_dict)
 	
-	# adds the current player's data into the list
-	var new_dict = {}
-	new_dict["name"] = MasterData.player_name
-	new_dict["time_elapsed"] = str(MasterData.end_time - MasterData.start_time)
-	new_dict["enemies_slain"] = str(MasterData.enemies_slain_stage_one + MasterData.enemies_slain_stage_two + MasterData.enemies_slain_stage_three)
-	var starting_score = 10
-	starting_score = starting_score - int(new_dict["time_elapsed"])
-	if starting_score < 1:
-		starting_score = 1
-	var final_score = starting_score * int(new_dict["enemies_slain"])	
-	new_dict["final_score"] = final_score
-	
-	data.append(new_dict)
-	
 	var sorted_data = []
 	# sorts the players by final_score and then aadds the sorted players into sorted_data
 	for obj in data:

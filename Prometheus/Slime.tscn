@@ -77,13 +77,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=6]
-extents = Vector2( 8, 7 )
+[sub_resource type="CircleShape2D" id=23]
+radius = 6.7082
 
 [sub_resource type="RectangleShape2D" id=22]
 extents = Vector2( 8, 7 )
 
 [node name="Slime" type="KinematicBody2D"]
+position = Vector2( 0, -1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
@@ -96,9 +97,8 @@ frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 1 )
-shape = SubResource( 6 )
+shape = SubResource( 23 )
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2( 8, 0 )

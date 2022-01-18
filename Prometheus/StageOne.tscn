@@ -7,7 +7,7 @@
 [ext_resource path="res://ChangeStage.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Pause.tscn" type="PackedScene" id=6]
 [ext_resource path="res://StageOne.gd" type="Script" id=7]
-[ext_resource path="res://Music/ForestBack.mp3" type="AudioStream" id=8]
+[ext_resource path="res://SpearCollectible.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Gods/Dionysus.tscn" type="PackedScene" id=11]
 
 [node name="StageOne" type="Node2D"]
@@ -59,6 +59,11 @@ target_stage = "res://StageTwo.tscn"
 [node name="Dionysus" parent="." instance=ExtResource( 11 )]
 position = Vector2( 200, -432 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-autoplay = true
+[node name="Spear" parent="." instance=ExtResource( 8 )]
+position = Vector2( 48, 60 )
+
+[node name="Spear2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 273, -276 )
+
+[node name="Spear3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 249, -452 )

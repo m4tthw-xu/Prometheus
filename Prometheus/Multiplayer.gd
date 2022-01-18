@@ -1,5 +1,4 @@
 extends Node2D
-
 const HALF_HEART = preload("res://sprites/half_heart2.png")
 const FULL_HEART = preload("res://sprites/full_heart2.png")
 const BLANK_HEART = preload("res://sprites/blank_heart.png")

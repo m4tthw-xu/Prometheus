@@ -11,6 +11,8 @@ const CLAYSHIELD = preload("res://ClayShield.tscn")
 const HALF_HEART = preload("res://sprites/half_heart.png")
 const FULL_HEART = preload("res://sprites/full_heart.png")
 
+const SPEAR_CHARGE = preload("res://spearitem.png")
+
 var StageOne = preload("res://StageOne.gd")
 var StageTwo = preload("res://StageTwo.gd")
 var StageThree = preload("res://StageThree.gd")
@@ -60,6 +62,33 @@ var time_elapsed = 0
 var current_speed = 0
 var modspeed = 0
 
+func refresh_spear_data():
+	if MasterData.spear_charges == 4:
+		$CanvasLayer/PlayerStats/spear4.set_texture(SPEAR_CHARGE)
+		$CanvasLayer/PlayerStats/spear3.set_texture(SPEAR_CHARGE)
+		$CanvasLayer/PlayerStats/spear2.set_texture(SPEAR_CHARGE)
+		$CanvasLayer/PlayerStats/spear1.set_texture(SPEAR_CHARGE)
+	elif MasterData.spear_charges == 3:
+		$CanvasLayer/PlayerStats/spear4.set_texture(null)
+		$CanvasLayer/PlayerStats/spear3.set_texture(SPEAR_CHARGE)
+		$CanvasLayer/PlayerStats/spear2.set_texture(SPEAR_CHARGE)
+		$CanvasLayer/PlayerStats/spear1.set_texture(SPEAR_CHARGE)
+	elif MasterData.spear_charges == 2:
+		$CanvasLayer/PlayerStats/spear4.set_texture(null)
+		$CanvasLayer/PlayerStats/spear3.set_texture(null)
+		$CanvasLayer/PlayerStats/spear2.set_texture(SPEAR_CHARGE)
+		$CanvasLayer/PlayerStats/spear1.set_texture(SPEAR_CHARGE)
+	elif MasterData.spear_charges == 1:
+		$CanvasLayer/PlayerStats/spear4.set_texture(null)
+		$CanvasLayer/PlayerStats/spear3.set_texture(null)
+		$CanvasLayer/PlayerStats/spear2.set_texture(null)
+		$CanvasLayer/PlayerStats/spear1.set_texture(SPEAR_CHARGE)
+	else:
+		$CanvasLayer/PlayerStats/spear4.set_texture(null)
+		$CanvasLayer/PlayerStats/spear3.set_texture(null)
+		$CanvasLayer/PlayerStats/spear2.set_texture(null)
+		$CanvasLayer/PlayerStats/spear1.set_texture(null)
+
 # establishes a start time for the player to accelerate
 func _ready():
 	time_start = 0
@@ -69,10 +98,7 @@ func _ready():
 	
 	# have to change some settings if it's multiplayer
 	if get_tree().get_current_scene().name.find("Multiplayer") != -1:
-		# this makes it so that the camera will not move
 		$Camera2D.limit_top = 0
-		
-		# moves all the player's hearts to the top left of the screen so that player 2's hearts can go on the top right
 		$CanvasLayer/PlayerStats/heart1.position.x = 6
 		$CanvasLayer/PlayerStats/heart1.position.y = 6
 		$CanvasLayer/PlayerStats/heart2.position.x = 16
@@ -83,15 +109,8 @@ func _ready():
 		$CanvasLayer/PlayerStats/heart4.position.y = 6
 		$CanvasLayer/PlayerStats/heart5.position.x = 46
 		$CanvasLayer/PlayerStats/heart5.position.y = 6
-		
-		# removes the kill counter
 		$CanvasLayer/PlayerStats/HBoxContainer.visible = false
 		
-		$CanvasLayer/PlayerStats/heart5.flip_h = true
-		$CanvasLayer/PlayerStats/heart4.flip_h = true
-		$CanvasLayer/PlayerStats/heart3.flip_h = true
-		$CanvasLayer/PlayerStats/heart2.flip_h = true
-		$CanvasLayer/PlayerStats/heart1.flip_h = true
 
 
 # tracks the time elapsed to calculate how the player accelerates
@@ -112,9 +131,10 @@ func input_process(actor, event):
 		else:
 			actor.jump
 
-# this function runs repeatedly
 func _physics_process(delta):
 	
+	refresh_spear_data();
+	MasterData.player_x_pos = self.position.x
 	
 	$CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer/Kills.text = "Kills: " + str(MasterData.enemies_slain_stage_one + MasterData.enemies_slain_stage_two + MasterData.enemies_slain_stage_three)
 	
@@ -127,11 +147,11 @@ func _physics_process(delta):
 			_time_process()
 			
 			# acceleration algorithm: speeds up to a max speed of SPEED + 50
-			# 65 is the greatest added speed
+			# 50 is the greatest added speed
 			modspeed = (time_elapsed / 12)
 			if modspeed > 65:
-				velocity.x = SPEED + 50
-				current_speed = SPEED + 50
+				velocity.x = SPEED + 65
+				current_speed = SPEED + 65
 			else:
 				velocity.x = SPEED + modspeed
 				current_speed = SPEED + modspeed
@@ -148,16 +168,14 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_a") and !Input.is_action_pressed("ui_d"):
 			_time_process()
 			
-			# for acceleration
 			modspeed = (time_elapsed / 12)
-			if modspeed > 50:
-				velocity.x = -SPEED - 50
-				current_speed = -SPEED - 50
+			if modspeed > 65:
+				velocity.x = -SPEED - 65
+				current_speed = -SPEED - 65
 			else:
 				velocity.x = -SPEED - modspeed
 				current_speed = -SPEED - modspeed
 			
-			# ensures the hitboxes and player are facing the correct direction
 			$Melee.position.x = -12
 			direction = "right"
 			if is_attacking == false:
@@ -186,12 +204,24 @@ func _physics_process(delta):
 				velocity.y = JUMP_POWER
 				on_ground = false
 		
+		
 		# player can only attack after shooting animation completes
-		if Input.is_action_just_pressed("ui_c"):
+		if Input.is_action_just_pressed("ui_t") && MasterData.spear_charges != 0:
 			if $AnimatedSprite.animation != "sword" and spear_delay == false:
 				is_attacking = true
 				spear_delay = true
 				$SpearTimer.start()
+				
+				if MasterData.spear_charges == 4:
+					$CanvasLayer/PlayerStats/spear4.set_texture(null)
+				elif MasterData.spear_charges == 3:
+					$CanvasLayer/PlayerStats/spear3.set_texture(null)
+				elif MasterData.spear_charges == 2:
+					$CanvasLayer/PlayerStats/spear2.set_texture(null)
+				elif MasterData.spear_charges == 1:
+					$CanvasLayer/PlayerStats/spear1.set_texture(null)
+				MasterData.spear_charges = (MasterData.spear_charges - 1)
+				
 				
 				$AnimatedSprite.play("spear")
 				var spear = SPEAR.instance()
@@ -201,7 +231,7 @@ func _physics_process(delta):
 					spear.set_fireball_direction(-1)
 				get_parent().add_child(spear)
 				spear.position = $Position2D.global_position
-		if Input.is_action_just_pressed("ui_x"):
+		if Input.is_action_just_pressed("ui_g"):
 			if $AnimatedSprite.animation != "spear" and sword_delay == false:
 				is_attacking = true
 				sword_delay = true
@@ -215,17 +245,18 @@ func _physics_process(delta):
 				$AnimatedSprite.play("sword")
 				for obj in $Melee.get_overlapping_bodies():
 					if obj.name.find("Player2") != -1:
-						MasterData.health_p2 = MasterData.health_p2 - 20\
-				
-				for obj in $Melee.get_overlapping_bodies():
-					for enemy_name in MasterData.enemy_names:
-						if enemy_name in obj.name:
-							obj.dead()
-							enemy_slain()
+						MasterData.health_p2 = MasterData.health_p2 - 20
+		
+		if $AnimatedSprite.animation == "sword":
+			for obj in $Melee.get_overlapping_bodies():
+				for enemy_name in MasterData.enemy_names:
+					if enemy_name in obj.name:
+						obj.dead()
+						enemy_slain()
 				
 		
 		#spawns a wall on left and right side of the player
-		if Input.is_action_just_pressed("ui_v"):
+		if Input.is_action_just_pressed("ui_h"):
 			if is_attacking == false && wall_delay == false && on_ground == true:
 				wall_delay = true
 				$WallTimer.start()
