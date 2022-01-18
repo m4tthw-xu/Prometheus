@@ -336,6 +336,11 @@ func _physics_process(delta):
 					MasterData.health = MasterData.health -20
 					can_take_damage = false
 					$DamageDelay.start(1)
+			for obj in $BodyArea.get_overlapping_areas():
+				if obj.name.find("Lightning") != -1:
+					MasterData.health = MasterData.health - 20
+					can_take_damage = false
+					$DamageDelay.start(1)
 	
 	# display
 	if MasterData.health == 100:
@@ -404,6 +409,10 @@ func _on_AnimatedSprite_animation_finished():
 		$CollisionShape2D.disabled = false
 		position.x = 16
 		position.y = 160
+		
+		if get_tree().get_current_scene().name.find("FinalBoss") != -1:
+			position.y = 140
+		
 		MasterData.health = 100
 		is_dead = false
 		

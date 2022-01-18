@@ -25,6 +25,6 @@ func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
 
-
-func _on_lightning_body_entered(body):
-	queue_free()
+func _on_Lightning_body_entered(body):
+	if body.name.find("Player") != -1:
+		queue_free() # Replace with function body.
