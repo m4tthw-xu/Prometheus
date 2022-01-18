@@ -125,7 +125,7 @@ func _physics_process(delta):
 				$AnimatedSprite.flip_h = true
 			
 		# jump mechanics
-		if Input.is_action_pressed("ui_accept") or Input.is_action_pressed("ui_p"): #ui_accept is the space bar or enter bar
+		if Input.is_action_pressed("ui_p"): #ui_accept is the space bar or enter bar
 			if on_ground == true:
 				velocity.y = JUMP_POWER
 				on_ground = false
