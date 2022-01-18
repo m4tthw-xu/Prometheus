@@ -1,6 +1,5 @@
 extends Node2D
 
-
 # this is simply the instructions page
 # the user is brought to the first level after 5 seconds or the user presses the space bar
 

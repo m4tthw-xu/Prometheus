@@ -47,16 +47,14 @@ School: James E. Taylor High School"
 align = 1
 
 [node name="LegalInfo" type="Label" parent="Container"]
-anchor_top = -0.1
-anchor_bottom = 0.725
 margin_left = 20.0
 margin_top = 67.0
 margin_right = 300.0
 margin_bottom = 121.0
 custom_colors/font_color = Color( 0, 0, 0, 1 )
 custom_fonts/font = SubResource( 4 )
-text = "All art, music, code, and other objects in our game was created in house by us. The Godot licensing agreement allows game developers FULL control over games developed with the Godot game engine. In other words, we have full copyright and licensing rights.
-Our game is protected under the Apache License 2.0"
+text = "Licensing: Apache License 2.0
+ Copyright: All art, code, and other objects that appear in this game was made in house by us."
 align = 1
 autowrap = true
 

@@ -1,7 +1,7 @@
 extends Area2D
 
 # speed of the fireball
-const SPEED = 125
+const SPEED = 200
 var velocity = Vector2()
 # -1 is fireball face to left, 1 is facing to right
 var direction = 1
@@ -17,6 +17,7 @@ func set_fireball_direction(dir):
 # can use translate instead of move_and_slide cuz it doesn't interact w anything
 func _physics_process(delta):
 	velocity.x = SPEED * delta * direction
+	velocity.y = 0.1
 	translate(velocity)
 	$AnimatedSprite.play("shoot")
 
