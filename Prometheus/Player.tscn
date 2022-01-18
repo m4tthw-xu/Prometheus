@@ -13,9 +13,13 @@
 [ext_resource path="res://Sprites/Prom/promdeath.png" type="Texture" id=11]
 [ext_resource path="res://spearitem.png" type="Texture" id=12]
 
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 3 )
-region = Rect2( 48, 0, 16, 32 )
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 0, 16, 32 )
 
 [sub_resource type="AtlasTexture" id=25]
 atlas = ExtResource( 7 )
@@ -121,20 +125,16 @@ region = Rect2( 16, 32, 16, 32 )
 atlas = ExtResource( 4 )
 region = Rect2( 32, 32, 16, 32 )
 
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 32 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 16, 0, 16, 32 )
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 32 )
 
 [sub_resource type="SpriteFrames" id=8]
 animations = [ {
-"frames": [ SubResource( 21 ) ],
-"loop": false,
-"name": "jump",
-"speed": 12.0
+"frames": [ SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ) ],
 "loop": false,
@@ -161,10 +161,10 @@ animations = [ {
 "name": "run",
 "speed": 12.0
 }, {
-"frames": [ SubResource( 9 ), SubResource( 10 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
+"frames": [ SubResource( 21 ) ],
+"loop": false,
+"name": "jump",
+"speed": 12.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -198,7 +198,6 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 8 )
 animation = "idle"
-frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
