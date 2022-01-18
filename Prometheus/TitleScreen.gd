@@ -1,7 +1,5 @@
 extends Node
 
-
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$StartButton.grab_focus()
@@ -13,6 +11,7 @@ func _ready():
 	file.open("user://tempPlayerStorage.save", File.WRITE)
 	file.store_var(new_dict, true)
 	file.close()
+	
 
 func _physics_process(delta):
 	if $StartButton.is_hovered() == true:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Tile_Sets/ForestTileSet.tres" type="TileSet" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://Player2.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Sprites/full_heart2.png" type="Texture" id=6]
 [ext_resource path="res://Sprites/Backgrounds/forestback.png" type="Texture" id=7]
-[ext_resource path="res://Music/ForestBack.mp3" type="AudioStream" id=8]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -61,7 +60,3 @@ texture = ExtResource( 6 )
 [node name="heart5" type="Sprite" parent="."]
 position = Vector2( 272, 6 )
 texture = ExtResource( 6 )
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 8 )
-autoplay = true

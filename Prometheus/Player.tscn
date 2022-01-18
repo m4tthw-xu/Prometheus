@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://Sprites/Prom/promIdle.png" type="Texture" id=1]
 [ext_resource path="res://Player.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Fonts/orange kid.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Sprites/full_heart.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/Prom/promdeath.png" type="Texture" id=11]
+[ext_resource path="res://spearitem.png" type="Texture" id=12]
 
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 3 )
@@ -31,6 +32,18 @@ region = Rect2( 0, 32, 48, 32 )
 [sub_resource type="AtlasTexture" id=28]
 atlas = ExtResource( 7 )
 region = Rect2( 48, 32, 48, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 48, 0, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 32, 16, 32 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 3 )
+region = Rect2( 16, 32, 16, 32 )
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 6 )
@@ -108,18 +121,6 @@ region = Rect2( 16, 32, 16, 32 )
 atlas = ExtResource( 4 )
 region = Rect2( 32, 32, 16, 32 )
 
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 3 )
-region = Rect2( 48, 0, 16, 32 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 3 )
-region = Rect2( 0, 32, 16, 32 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 3 )
-region = Rect2( 16, 32, 16, 32 )
-
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 32 )
@@ -140,6 +141,11 @@ animations = [ {
 "name": "sword",
 "speed": 15.0
 }, {
+"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
+"loop": false,
+"name": "fall",
+"speed": 5.0
+}, {
 "frames": [ SubResource( 22 ), SubResource( 23 ), SubResource( 24 ) ],
 "loop": false,
 "name": "spear",
@@ -154,11 +160,6 @@ animations = [ {
 "loop": true,
 "name": "run",
 "speed": 12.0
-}, {
-"frames": [ SubResource( 18 ), SubResource( 19 ), SubResource( 20 ) ],
-"loop": false,
-"name": "fall",
-"speed": 5.0
 }, {
 "frames": [ SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
@@ -197,10 +198,10 @@ script = ExtResource( 2 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 8 )
 animation = "idle"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 0, 0.5 )
 shape = SubResource( 1 )
 
@@ -230,7 +231,6 @@ position = Vector2( 16, 0 )
 shape = SubResource( 33 )
 
 [node name="Melee" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Melee"]
 shape = SubResource( 29 )
@@ -242,7 +242,7 @@ wait_time = 0.4
 wait_time = 3.0
 
 [node name="SpearTimer" type="Timer" parent="."]
-wait_time = 0.4
+wait_time = 0.646
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -282,7 +282,24 @@ position = Vector2( 272, 6 )
 texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 8, 8 )
 
+[node name="spear1" type="Sprite" parent="CanvasLayer/PlayerStats"]
+position = Vector2( 257, 6 )
+texture = ExtResource( 12 )
+
+[node name="spear2" type="Sprite" parent="CanvasLayer/PlayerStats"]
+position = Vector2( 246, 6 )
+texture = ExtResource( 12 )
+
+[node name="spear3" type="Sprite" parent="CanvasLayer/PlayerStats"]
+position = Vector2( 235, 6 )
+texture = ExtResource( 12 )
+
+[node name="spear4" type="Sprite" parent="CanvasLayer/PlayerStats"]
+position = Vector2( 224, 6 )
+texture = ExtResource( 12 )
+
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PlayerStats"]
+visible = false
 margin_left = 5.0
 margin_right = 315.0
 margin_bottom = 175.0
@@ -291,21 +308,20 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PlayerStats/HBoxContainer"]
-margin_right = 22.0
+margin_right = 46.0
 margin_bottom = 175.0
 custom_constants/separation = 0
 
 [node name="Score" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
-visible = false
 margin_right = 46.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 30 )
 text = "Score: 7"
 
 [node name="Height" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
-visible = false
-margin_right = 31.0
-margin_bottom = 15.0
+margin_top = 20.0
+margin_right = 46.0
+margin_bottom = 35.0
 custom_fonts/font = SubResource( 31 )
 text = "Height: 3"
 __meta__ = {
@@ -313,8 +329,9 @@ __meta__ = {
 }
 
 [node name="Kills" type="Label" parent="CanvasLayer/PlayerStats/HBoxContainer/VBoxContainer"]
-margin_right = 22.0
-margin_bottom = 15.0
+margin_top = 35.0
+margin_right = 46.0
+margin_bottom = 50.0
 custom_fonts/font = SubResource( 32 )
 text = "Kills: 4"
 

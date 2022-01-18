@@ -145,7 +145,7 @@ func _physics_process(delta):
 				
 				for obj in $Melee.get_overlapping_bodies():
 					if obj.name == "Player":
-						MasterData.health = MasterData.health - 50
+						MasterData.health = MasterData.health - 40
 				$AnimatedSprite.play("sword")
 				
 		
