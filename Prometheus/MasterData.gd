@@ -4,7 +4,7 @@ extends Node
 # currently being used like RAM in a computer: short term memory storage for the player's stats
 
 # has to be accessed by mutliple scenes globally
-const enemy_names = ["Slime", "Dionysus", "Golem"]
+const enemy_names = ["Slime", "Dionysus", "Golem", ]
 
 var player_name = ""
 var start_time = 0

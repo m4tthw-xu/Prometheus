@@ -7,6 +7,8 @@ const BOTTLE = preload("res://Gods/DionysusBottle.tscn")
 const PORTAL = preload("res://ChangeStage.tscn")
 const HIDDENSTAIRS = preload("res://hiddenstairs.tscn")
 
+var health = 3
+
 var is_dead = false
 
 var velocity = Vector2()
@@ -123,3 +125,7 @@ func _on_AnimatedSprite_animation_finished():
 		bottle.position = $Position2D.global_position
 		$AnimatedSprite.play("idle")
 		
+func decreaseHealth():
+	health-=1;
+	if health <=1:
+		dead();

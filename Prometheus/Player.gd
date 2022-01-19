@@ -252,8 +252,11 @@ func _physics_process(delta):
 			for obj in $Melee.get_overlapping_bodies():
 				for enemy_name in MasterData.enemy_names:
 					if enemy_name in obj.name:
-						obj.dead()
-						enemy_slain()
+						if enemy_name == "Dionysus":
+							obj.decreaseHealth();
+						else:
+							obj.dead()
+							enemy_slain()
 				
 		
 		#spawns a wall on left and right side of the player

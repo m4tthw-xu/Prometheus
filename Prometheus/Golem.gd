@@ -11,6 +11,8 @@ var direction = 1
 
 var is_dead = false
 
+var health = 2
+
 var is_attacking = false
 var previous_animation = ""
 
@@ -94,3 +96,8 @@ func _on_MeleeCooldown_timeout():
 	$AnimatedSprite.position.x = 0
 	previous_animation == "idle"
 	$AnimatedSprite.play("idle")
+
+func decreaseHealth():
+	health-=1
+	if health<=0:
+		dead()
