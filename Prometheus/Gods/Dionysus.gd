@@ -1,9 +1,11 @@
 extends KinematicBody2D
 
-const GRAVITY = 300
-const SPEED = 40
+const GRAVITY = 150
+const SPEED = 80
 
 const BOTTLE = preload("res://Gods/DionysusBottle.tscn")
+const PORTAL = preload("res://ChangeStage.tscn")
+const HIDDENSTAIRS = preload("res://hiddenstairs.tscn")
 
 var is_dead = false
 
@@ -45,11 +47,11 @@ func _randomize_boundaries():
 
 func _randomize_jump():
 	jump_rand.randomize()
-	jump = jump_rand.randf_range(0, 60);
+	jump = jump_rand.randf_range(0, 40);
 	
 func _randomize_jump_power():
 	jump_power_rand.randomize()
-	jump_power = jump_power_rand.randf_range(50, 150)
+	jump_power = jump_power_rand.randf_range(100, 150)
 
 func _process(delta):
 	var move = Vector2()
@@ -107,6 +109,12 @@ func _on_AttackTimer_timeout():
 
 func _on_AnimatedSprite_animation_finished():
 	if previous_animation == "dead":
+		var hiddenstairs = HIDDENSTAIRS.instance()
+		get_parent().add_child(hiddenstairs)
+		var portal = PORTAL.instance()
+		portal.target_stage = "StageTwo.tscn"
+		get_parent().add_child(portal)
+		portal.position = Vector2(300, 48)
 		queue_free()
 	if previous_animation == "attack":
 		# spawns the bottle into the game
