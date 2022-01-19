@@ -8,6 +8,7 @@ const PORTAL = preload("res://ChangeStage.tscn")
 const HIDDENSTAIRS = preload("res://hiddenstairs.tscn")
 
 var health = 3
+var dmg_cool = 20
 
 var is_dead = false
 
@@ -74,6 +75,9 @@ func _process(delta):
 	position += move * delta
 
 func _physics_process(delta):
+	if dmg_cool>0:
+		dmg_cool-=1;
+	
 	if is_dead == false:
 		
 		if currently_attacking == false:
@@ -126,6 +130,9 @@ func _on_AnimatedSprite_animation_finished():
 		$AnimatedSprite.play("idle")
 		
 func decreaseHealth():
-	health-=1;
-	if health <=1:
-		dead();
+	if dmg_cool <= 0:
+		health-=1;
+		print("ree")
+		dmg_cool = 20;
+		if health <=0:
+			dead();

@@ -8,6 +8,9 @@ var gravity_rand = RandomNumberGenerator.new()
 var SPEED = 40
 var speed_rand = RandomNumberGenerator.new()
 
+var health = 5
+var dmg_cool = 20
+
 var is_dead = false
 
 var velocity = Vector2()
@@ -97,6 +100,9 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if dmg_cool>0:
+		dmg_cool-=1;
+	
 	if is_dead == false:
 		
 		if currently_attacking == false:
@@ -110,21 +116,30 @@ func _physics_process(delta):
 			get_parent().add_child(lightning)
 			lightning.position = $Position2D.global_position
 			$AttackTimer.start()
-		
 	
 
 func dead():
-	$AnimatedSprite.play("dead")
-	previous_animation = "dead"
+	$AnimatedSprite.play("death")
+	previous_animation = "death"
+	#queue_free();
 
 func _on_AttackTimer_timeout():
-	if previous_animation != "dead":
+	if previous_animation != "death":
 		$AnimatedSprite.play("attack")
 		previous_animation = "attack"
 		currently_attacking = false
 		can_attack = true
+	
 
 
 func _on_AnimatedSprite_animation_finished():
-	pass
+	if previous_animation == "death":
+		#$AnimatedSprite.play("death");
+		queue_free();
 
+func decreaseHealth():
+	if dmg_cool <=0:
+		health-=1;
+		dmg_cool = 20;
+		if health<=0:
+			dead();

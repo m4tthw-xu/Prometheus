@@ -30,7 +30,6 @@ position = Vector2( 42, 160 )
 
 [node name="ChangeStage" parent="." instance=ExtResource( 4 )]
 position = Vector2( 285, -656 )
-scale = Vector2( 2, 2 )
 target_stage = "res://GameComplete.tscn"
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 6 )]

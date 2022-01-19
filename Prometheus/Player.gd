@@ -251,9 +251,12 @@ func _physics_process(delta):
 		if $AnimatedSprite.animation == "sword":
 			for obj in $Melee.get_overlapping_bodies():
 				for enemy_name in MasterData.enemy_names:
+					#print(obj.name);
 					if enemy_name in obj.name:
-						if enemy_name == "Dionysus":
+						
+						if enemy_name == "Dionysus" or enemy_name == "Zeus":
 							obj.decreaseHealth();
+							enemy_slain();
 						else:
 							obj.dead()
 							enemy_slain()

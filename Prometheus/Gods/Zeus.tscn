@@ -24,7 +24,7 @@
 [ext_resource path="res://Gods/ZeusSprites/attack08.png" type="Texture" id=22]
 [ext_resource path="res://Gods/ZeusSprites/attack12.png" type="Texture" id=23]
 [ext_resource path="res://Gods/ZeusSprites/attack13.png" type="Texture" id=24]
-[ext_resource path="res://Zeus.gd" type="Script" id=25]
+[ext_resource path="res://Gods/Zeus.gd" type="Script" id=25]
 [ext_resource path="res://Gods/ZeusSprites/attack10.png" type="Texture" id=26]
 [ext_resource path="res://Gods/ZeusSprites/attack11.png" type="Texture" id=27]
 [ext_resource path="res://Gods/ZeusSprites/damage2.png" type="Texture" id=28]
@@ -37,10 +37,10 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 10 ), ExtResource( 33 ), ExtResource( 30 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 27 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 2 ) ],
 "loop": true,
-"name": "attack",
-"speed": 13.0
+"name": "idle",
+"speed": 9.0
 }, {
 "frames": [ ExtResource( 17 ), ExtResource( 9 ), ExtResource( 28 ), ExtResource( 13 ) ],
 "loop": true,
@@ -52,10 +52,10 @@ animations = [ {
 "name": "death",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 33 ), ExtResource( 30 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 27 ), ExtResource( 24 ) ],
 "loop": true,
-"name": "idle",
-"speed": 9.0
+"name": "attack",
+"speed": 13.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
@@ -68,8 +68,8 @@ script = ExtResource( 25 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "attack"
-frame = 5
+animation = "idle"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
