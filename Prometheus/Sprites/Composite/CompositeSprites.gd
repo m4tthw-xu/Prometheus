@@ -18,7 +18,8 @@ const face_spriteSheet = {
 	0:preload("res://Sprites/Composite/fh1.png"),
 	1:preload("res://Sprites/Composite/fh2.png"),
 	2:preload("res://Sprites/Composite/fh3.png"),
-	3:preload("res://Sprites/Composite/fh4.png")
+	3:preload("res://Sprites/Composite/fh4.png"),
+	4:preload("res://Sprites/Composite/None.png")#no hair
 }
 const toga_spriteSheet = {
 	0:preload("res://Sprites/Composite/toga1.png"),

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DAintropart1.webm" type="VideoStream" id=1]
+[ext_resource path="res://intropart1.gd" type="Script" id=2]
+[ext_resource path="res://cutsceneskip.png" type="Texture" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_top = -13.0
+margin_right = 320.0
+margin_bottom = 196.0
+stream = ExtResource( 1 )
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 279, 176 )
+scale = Vector2( 0.786408, 0.583333 )
+texture = ExtResource( 3 )
+
+[connection signal="finished" from="VideoPlayer" to="." method="_on_VideoPlayer_finished"]
