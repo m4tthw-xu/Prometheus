@@ -37,25 +37,25 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 2 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 33 ), ExtResource( 30 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 27 ), ExtResource( 24 ) ],
 "loop": true,
-"name": "idle",
-"speed": 9.0
-}, {
-"frames": [ ExtResource( 17 ), ExtResource( 9 ), ExtResource( 28 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "damage",
-"speed": 15.0
+"name": "attack",
+"speed": 13.0
 }, {
 "frames": [ ExtResource( 12 ), ExtResource( 16 ), ExtResource( 32 ), ExtResource( 14 ), ExtResource( 8 ), ExtResource( 18 ), ExtResource( 6 ), ExtResource( 34 ), ExtResource( 19 ), ExtResource( 15 ) ],
 "loop": true,
 "name": "death",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 33 ), ExtResource( 30 ), ExtResource( 20 ), ExtResource( 29 ), ExtResource( 31 ), ExtResource( 7 ), ExtResource( 11 ), ExtResource( 22 ), ExtResource( 21 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 27 ), ExtResource( 24 ) ],
+"frames": [ ExtResource( 17 ), ExtResource( 9 ), ExtResource( 28 ), ExtResource( 13 ) ],
 "loop": true,
-"name": "attack",
-"speed": 13.0
+"name": "damage",
+"speed": 15.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ), ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 9.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]

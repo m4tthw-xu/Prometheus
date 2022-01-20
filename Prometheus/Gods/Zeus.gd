@@ -2,6 +2,9 @@ extends KinematicBody2D
 
 const LIGHTNING = preload("res://Gods/lightning.tscn")
 
+const HIDDENSTAIRS = preload("res://hiddenstairszeus.tscn")
+const PORTAL = preload("res://ChangeStage.tscn")
+
 var GRAVITY = 300
 var gravity_rand = RandomNumberGenerator.new()
 
@@ -135,6 +138,14 @@ func _on_AttackTimer_timeout():
 func _on_AnimatedSprite_animation_finished():
 	if previous_animation == "death":
 		#$AnimatedSprite.play("death");
+		
+		var hiddenstairs = HIDDENSTAIRS.instance()
+		var portal = PORTAL.instance()
+		portal.target_stage = "finalcutscene.tscn"
+		get_parent().add_child(portal)
+		get_parent().add_child(hiddenstairs)
+		hiddenstairs.position = Vector2(0, 0)
+		portal.position = Vector2(160, -192)
 		queue_free();
 
 func decreaseHealth():

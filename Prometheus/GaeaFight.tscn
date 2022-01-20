@@ -5,7 +5,7 @@
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Tile_Sets/RockyTileSet.tres" type="TileSet" id=4]
 
-[node name="Node2D" type="Node2D"]
+[node name="GaeaFight" type="Node2D"]
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 269, 32 )
@@ -24,5 +24,5 @@ tile_data = PoolIntArray( -3014657, 7, 0, -3080172, 7, 0, -2949121, 7, 0, -30146
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 24, 159 )
 
-[node name="KinematicBody2D" parent="." instance=ExtResource( 2 )]
+[node name="Gaea" parent="." instance=ExtResource( 2 )]
 position = Vector2( 280, 139 )

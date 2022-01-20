@@ -37,7 +37,7 @@ func enemy_killed():
 func _on_Spear_body_entered(body):
 	for enemy_name in MasterData.enemy_names:
 		if enemy_name in body.name:
-			if enemy_name == "Golem" or enemy_name == "Dionysus" or enemy_name == "Zeus":
+			if enemy_name == "Golem" or enemy_name == "Dionysus" or enemy_name == "Zeus" or enemy_name == "Gaea":
 				body.decreaseHealth();
 		elif enemy_name in body.name:
 			body.dead()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Title.png" type="Texture" id=1]
 [ext_resource path="res://backbanner.png" type="Texture" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://Sprites/multiplayerbuttonhover.png" type="Texture" id=13]
 [ext_resource path="res://Sprites/leaderboardbutton.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/leaderboardbuttonhover.png" type="Texture" id=15]
+[ext_resource path="res://Cymatics - Menu FX Organic 1 - A6(Sus2).wav" type="AudioStream" id=16]
 
 [node name="TitleScreen" type="Node"]
 script = ExtResource( 5 )
@@ -39,6 +40,9 @@ texture_hover = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StartButtonSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 16 )
 
 [node name="MultiplayerButton" type="TextureButton" parent="."]
 margin_left = 47.0
@@ -123,9 +127,12 @@ custom_constants/separation = 8
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_right = 280.0
 
+[node name="StartButtonTimer" type="Timer" parent="."]
+
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="MultiplayerButton" to="." method="_on_MultiplayerButton_pressed"]
 [connection signal="pressed" from="LeaderboardButton" to="." method="_on_LeaderboardButton_pressed"]
 [connection signal="pressed" from="ControlsButton" to="." method="_on_ControlsButton_pressed"]
 [connection signal="pressed" from="CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="ExitButton" to="." method="_on_ExitButton_pressed"]
+[connection signal="timeout" from="StartButtonTimer" to="." method="_on_StartButtonTimer_timeout"]

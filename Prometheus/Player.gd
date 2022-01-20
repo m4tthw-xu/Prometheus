@@ -148,7 +148,7 @@ func _physics_process(delta):
 			
 			# acceleration algorithm: speeds up to a max speed of SPEED + 50
 			# 50 is the greatest added speed
-			modspeed = (time_elapsed / 12)
+			modspeed = (time_elapsed / 10)
 			if modspeed > 65:
 				velocity.x = SPEED + 65
 				current_speed = SPEED + 65
@@ -168,7 +168,7 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_a") and !Input.is_action_pressed("ui_d"):
 			_time_process()
 			
-			modspeed = (time_elapsed / 12)
+			modspeed = (time_elapsed / 10)
 			if modspeed > 65:
 				velocity.x = -SPEED - 65
 				current_speed = -SPEED - 65
@@ -254,9 +254,9 @@ func _physics_process(delta):
 					#print(obj.name);
 					if enemy_name in obj.name:
 						
-						if enemy_name == "Dionysus" or enemy_name == "Zeus":
+						if enemy_name == "Dionysus" or enemy_name == "Zeus" or enemy_name == "Gaea":
 							obj.decreaseHealth();
-							enemy_slain();
+							#enemy_slain();
 						else:
 							obj.dead()
 							enemy_slain()

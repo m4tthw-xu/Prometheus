@@ -8,7 +8,7 @@
 [node name="FinalBoss" type="Node2D"]
 
 [node name="Finalfightback" type="Sprite" parent="."]
-position = Vector2( 160, 90 )
+position = Vector2( 160, -223 )
 texture = ExtResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]

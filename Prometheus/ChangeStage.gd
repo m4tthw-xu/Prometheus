@@ -3,8 +3,15 @@ extends Area2D
 export(String, FILE, "*.tscn") var target_stage
 
 var StageOne = preload("res://StageOne.gd")
-var StageTwo = preload("res://StageTwo.gd")
+var StageTwo = preload("res://DionFight.gd")
 var StageThree = preload("res://StageThree.gd")
+
+var sfxPlaying = false
+var timerPlayed = false
+
+func _process(delta):
+	if !sfxPlaying and timerPlayed:
+		get_tree().change_scene(target_stage)
 
 func _ready():
 	pass
@@ -12,7 +19,9 @@ func _ready():
 # changes stage of current scene when player enters the area
 func _on_ChangeStage_body_entered(body):
 	if "Player" in body.name:
-		
+		$sfx.play()
+		sfxPlaying = true
+		body.hide()
 		if get_tree().get_current_scene().name == "StageThree":
 			MasterData.end_time = OS.get_unix_time()
 			
@@ -27,4 +36,9 @@ func _on_ChangeStage_body_entered(body):
 			var final_score = starting_score * (MasterData.enemies_slain_stage_one + MasterData.enemies_slain_stage_two + MasterData.enemies_slain_stage_three)
 			MasterData.final_score = final_score
 			
-		get_tree().change_scene(target_stage)
+		$Timer.start()
+
+
+func _on_Timer_timeout():
+	timerPlayed = true
+	sfxPlaying = false

@@ -14,15 +14,23 @@ func _ready():
 	
 
 func _physics_process(delta):
+	
+	if !sfxPlaying and startTimerPlayed:
+		get_tree().change_scene("res://intropart1.tscn")
+	
 	$Sprite.position.y = $Sprite.position.y + 0.5
 	if $StartButton.is_hovered() == true:
 		$StartButton.grab_focus()
 	if $ExitButton.is_hovered() == true:
 		$ExitButton.grab_focus()
 
+var sfxPlaying = false
+var startTimerPlayed = false
 
 func _on_StartButton_pressed():
-	get_tree().change_scene("res://Objective.tscn")
+	$StartButtonSFX.play()
+	sfxPlaying = true
+	$StartButtonTimer.start()
 
 
 func _on_ExitButton_pressed():
@@ -43,3 +51,8 @@ func _on_LeaderboardButton_pressed():
 
 func _on_MultiplayerButton_pressed():
 	get_tree().change_scene("res://Multiplayer.tscn")
+
+
+func _on_StartButtonTimer_timeout():
+	startTimerPlayed = true
+	sfxPlaying = false

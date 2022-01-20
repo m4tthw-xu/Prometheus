@@ -132,7 +132,6 @@ func _on_AnimatedSprite_animation_finished():
 func decreaseHealth():
 	if dmg_cool <= 0:
 		health-=1;
-		print("ree")
 		dmg_cool = 20;
 		if health <=0:
 			dead();
