@@ -206,7 +206,7 @@ func _physics_process(delta):
 		
 		
 		# player can only attack after shooting animation completes
-		if Input.is_action_just_pressed("ui_t") && MasterData.spear_charges != 0:
+		if Input.is_action_just_pressed("ui_c") && MasterData.spear_charges != 0:
 			if $AnimatedSprite.animation != "sword" and spear_delay == false:
 				is_attacking = true
 				spear_delay = true
@@ -231,7 +231,7 @@ func _physics_process(delta):
 					spear.set_fireball_direction(-1)
 				get_parent().add_child(spear)
 				spear.position = $Position2D.global_position
-		if Input.is_action_just_pressed("ui_g"):
+		if Input.is_action_just_pressed("ui_x"):
 			if $AnimatedSprite.animation != "spear" and sword_delay == false:
 				is_attacking = true
 				sword_delay = true
