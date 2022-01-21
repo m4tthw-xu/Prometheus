@@ -11,16 +11,11 @@ var direction = 1
 
 var is_dead = false
 
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 # gets called when slime dies
 func dead():
 	is_dead = true
 	velocity = Vector2(0,0)
-	$CollisionShape2D.disabled = true	
+	$CollisionShape2D.disabled = true
 	$AnimatedSprite.play("dead")
 	
 	# will increase the player's kill count by 1 when slime dies
