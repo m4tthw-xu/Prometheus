@@ -7,7 +7,7 @@
 [ext_resource path="res://GaeaFight.gd" type="Script" id=5]
 [ext_resource path="res://forestBoss.mp3" type="AudioStream" id=6]
 
-[node name="Node2D" type="Node2D"]
+[node name="GaeaFight" type="Node2D"]
 script = ExtResource( 5 )
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://intro5(charactercreation).png" type="Texture" id=1]
 [ext_resource path="res://customPlayer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://CharCreateMain.gd" type="Script" id=3]
+[ext_resource path="res://Fonts/orange kid.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="Theme" id=1]
 
@@ -136,6 +137,10 @@ bg_color = Color( 0.0784314, 0.0745098, 0.0745098, 0 )
 
 [sub_resource type="StyleBoxFlat" id=18]
 bg_color = Color( 0.6, 0.6, 0.6, 0 )
+
+[sub_resource type="DynamicFont" id=19]
+size = 12
+font_data = ExtResource( 4 )
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource( 3 )
@@ -558,6 +563,18 @@ custom_styles/hover = SubResource( 15 )
 custom_styles/pressed = SubResource( 16 )
 custom_styles/focus = SubResource( 17 )
 custom_styles/normal = SubResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 4.0
+margin_top = 165.0
+margin_right = 184.0
+margin_bottom = 180.0
+custom_fonts/font = SubResource( 19 )
+text = "Press SPACE to continue"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }

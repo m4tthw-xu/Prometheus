@@ -40,6 +40,8 @@ var golem_x_spawn = 0
 var gaea_x_pos = 0;
 var facing = "left"
 
+var max_golem_count = 2
+
 func _randomize_golem_spawn():
 	golem_x_spawn_rand.randomize()
 	golem_x_spawn = golem_x_spawn_rand.randf_range(40, 280)
@@ -130,7 +132,7 @@ func dead():
 func _on_AttackTimer_timeout():
 	if previous_animation != "dead":
 		
-		if MasterData.golem_count < 3 && !is_dead:
+		if MasterData.golem_count < max_golem_count && !is_dead:
 			jump_disable = true
 			$AnimatedSprite.play("attack")
 			var golem = GOLEM.instance()

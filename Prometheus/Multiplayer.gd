@@ -13,6 +13,7 @@ func _set_speed():
 	$Sprite.position.y = $Sprite.position.y + speed
 
 func _physics_process(delta):
+	
 	if $Sprite.position.y <= -1792:
 		speed = 0.25
 	elif $Sprite.position.y >= 2000:
@@ -49,3 +50,4 @@ func _physics_process(delta):
 		$heart1.set_texture(HALF_HEART)
 	if MasterData.health_p2 <= 0:
 		$heart1.set_texture(BLANK_HEART)
+

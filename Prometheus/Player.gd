@@ -114,6 +114,9 @@ func _ready():
 		$CanvasLayer/PlayerStats/heart5.position.y = 6
 		$CanvasLayer/PlayerStats/HBoxContainer.visible = false
 		
+	print(get_tree().get_current_scene().name)
+	if get_tree().get_current_scene().name.find("Gaea") != -1:
+		$Camera2D.limit_top = 0
 
 
 # tracks the time elapsed to calculate how the player accelerates
@@ -209,7 +212,7 @@ func _physics_process(delta):
 		
 		
 		# player can only attack after shooting animation completes
-		if Input.is_action_just_pressed("ui_t") && MasterData.spear_charges != 0:
+		if Input.is_action_just_pressed("ui_c") && MasterData.spear_charges != 0:
 			print(MasterData.spear_charges)
 			if $AnimatedSprite.animation != "sword" and spear_delay == false:
 				is_attacking = true
@@ -235,7 +238,7 @@ func _physics_process(delta):
 					spear.set_fireball_direction(-1)
 				get_parent().add_child(spear)
 				spear.position = $Position2D.global_position
-		if Input.is_action_just_pressed("ui_g"):
+		if Input.is_action_just_pressed("ui_x"):
 			if $AnimatedSprite.animation != "spear" and sword_delay == false:
 				is_attacking = true
 				sword_delay = true
@@ -266,7 +269,7 @@ func _physics_process(delta):
 				
 		
 		#spawns a wall on left and right side of the player
-		if Input.is_action_just_pressed("ui_h"):
+		if Input.is_action_just_pressed("ui_v") and get_tree().get_current_scene().name.find("Multiplayer") == -1:
 			if is_attacking == false && wall_delay == false && on_ground == true:
 				wall_delay = true
 				$WallTimer.start()
