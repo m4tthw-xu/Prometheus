@@ -101,8 +101,8 @@ func _physics_process(delta):
 	
 	$Health.setValue(health/10.0*100);
 	
-	if Input.is_action_just_released("ui_]"):
-		dead()
+	#if Input.is_action_just_released("ui_]"):
+		#dead()
 	
 	if is_dead == false:
 		
