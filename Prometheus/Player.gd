@@ -253,7 +253,7 @@ func _physics_process(delta):
 				for enemy_name in MasterData.enemy_names:
 					#print(obj.name);
 					if enemy_name in obj.name:
-						
+						print(obj.name);
 						if enemy_name == "Dionysus" or enemy_name == "Zeus" or enemy_name == "Gaea":
 							obj.decreaseHealth();
 							#enemy_slain();

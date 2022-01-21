@@ -25,4 +25,4 @@ tile_data = PoolIntArray( -3014657, 7, 0, -3080172, 7, 0, -2949121, 7, 0, -30146
 position = Vector2( 24, 159 )
 
 [node name="Gaea" parent="." instance=ExtResource( 2 )]
-position = Vector2( 280, 139 )
+position = Vector2( 294, 153 )

@@ -20,6 +20,7 @@ var player_obj = preload("res://Player.tscn")
 
 # gets called when golem dies
 func dead():
+	health = 0;
 	$MeleeCooldown.stop()
 	is_dead = true
 	velocity = Vector2(0,0)
@@ -36,6 +37,8 @@ func dead():
 
 
 func _physics_process(delta):
+	
+	$Health.setValue(health/2.0*100);
 	
 	if is_dead == false:
 		

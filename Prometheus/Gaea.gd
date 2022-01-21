@@ -8,11 +8,13 @@ const GOLEM = preload("res://Golem.tscn")
 
 var is_dead = false
 
-var health = 2
+var health = 10
 var dmg_cool = 20
 
 var velocity = Vector2()
 var on_ground = true
+
+#onready var bar = get_node("Health");
 
 # this variable is for the attack cooldown
 # works with $AttackTimer
@@ -90,9 +92,11 @@ func _process(delta):
 	position += move * delta
 
 func _physics_process(delta):
+	#damage cooldown so that the sword does not one shot the boss
 	if dmg_cool>=0:
 		dmg_cool-=1;
 	
+	$Health.setValue(health/10.0*100);
 	
 	if Input.is_action_just_released("ui_]"):
 		dead()
