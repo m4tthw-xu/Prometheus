@@ -8,8 +8,13 @@ const GOLEM = preload("res://Golem.tscn")
 
 var is_dead = false
 
+var health = 10
+var dmg_cool = 20
+
 var velocity = Vector2()
 var on_ground = true
+
+#onready var bar = get_node("Health");
 
 # this variable is for the attack cooldown
 # works with $AttackTimer
@@ -39,6 +44,7 @@ var golem_x_spawn = 0
 
 var gaea_x_pos = 0;
 var facing = "left"
+
 
 var max_golem_count = 2
 
@@ -89,6 +95,11 @@ func _process(delta):
 	position += move * delta
 
 func _physics_process(delta):
+	#damage cooldown so that the sword does not one shot the boss
+	if dmg_cool>=0:
+		dmg_cool-=1;
+	
+	$Health.setValue(health/10.0*100);
 	
 	if Input.is_action_just_released("ui_]"):
 		dead()
@@ -153,3 +164,13 @@ func _on_AnimatedSprite_animation_finished():
 	if previous_animation == "attack":
 		# spawns the bottle into the game
 		$AnimatedSprite.play("idle")
+
+
+func decreaseHealth():
+	print("ree");
+	if dmg_cool <= 0:
+		health-=1;
+		
+		dmg_cool = 20;
+		if health <=0:
+			dead();

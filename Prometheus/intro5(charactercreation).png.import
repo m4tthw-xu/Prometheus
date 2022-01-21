@@ -2,15 +2,24 @@
 
 importer="texture"
 type="StreamTexture"
+<<<<<<< HEAD:Prometheus/intro5(charactercreation).png.import
 path="res://.import/intro5(charactercreation).png-1f19f172fb7feb08e9af7578a1c311d9.stex"
+=======
+path="res://.import/rockback.png-b90b9f8daf70a818d3001a75b0ae670a.stex"
+>>>>>>> More-health:Prometheus/Sprites/Backgrounds/rockback.png.import
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
+<<<<<<< HEAD:Prometheus/intro5(charactercreation).png.import
 source_file="res://intro5(charactercreation).png"
 dest_files=[ "res://.import/intro5(charactercreation).png-1f19f172fb7feb08e9af7578a1c311d9.stex" ]
+=======
+source_file="res://Sprites/Backgrounds/rockback.png"
+dest_files=[ "res://.import/rockback.png-b90b9f8daf70a818d3001a75b0ae670a.stex" ]
+>>>>>>> More-health:Prometheus/Sprites/Backgrounds/rockback.png.import
 
 [params]
 
@@ -22,7 +31,7 @@ compress/normal_map=0
 flags/repeat=0
 flags/filter=false
 flags/mipmaps=false
-flags/anisotropic=true
+flags/anisotropic=false
 flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false

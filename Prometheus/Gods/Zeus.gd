@@ -106,6 +106,8 @@ func _physics_process(delta):
 	if dmg_cool>0:
 		dmg_cool-=1;
 	
+	$Health.setValue(health/5.0*100);
+	
 	if is_dead == false:
 		
 		if currently_attacking == false:
