@@ -114,7 +114,7 @@ func _ready():
 		$CanvasLayer/PlayerStats/heart5.position.y = 6
 		$CanvasLayer/PlayerStats/HBoxContainer.visible = false
 		
-	print(get_tree().get_current_scene().name)
+
 	if get_tree().get_current_scene().name.find("Gaea") != -1:
 		$Camera2D.limit_top = 0
 
@@ -213,7 +213,7 @@ func _physics_process(delta):
 		
 		# player can only attack after shooting animation completes
 		if Input.is_action_just_pressed("ui_c") && MasterData.spear_charges != 0:
-			print(MasterData.spear_charges)
+			#print(MasterData.spear_charges)
 			if $AnimatedSprite.animation != "sword" and spear_delay == false:
 				is_attacking = true
 				spear_delay = true
