@@ -16,7 +16,13 @@ func _on_Resume_pressed():
 
 
 func _on_Restart_pressed():
-	get_tree().change_scene("res://" + get_tree().get_current_scene().name + ".tscn")
+	pause()
+	# reset all of the stats
+	MasterData.health = 100
+	MasterData.health_p2 = 100
+	MasterData.kills_p1 = 0
+	MasterData.kills_p2 = 0
+	get_tree().change_scene("res://Multiplayer.tscn")
 
 
 func _on_Exit_pressed():
