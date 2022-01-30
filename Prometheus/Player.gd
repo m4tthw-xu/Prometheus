@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-const SPEED = 70
+const SPEED = 75
 const GRAVITY = 30
 const JUMP_POWER = -350
 const FLOOR = Vector2(0,-1)
@@ -96,6 +96,9 @@ func _ready():
 	time_elapsed = 0
 	time_start = OS.get_ticks_msec()
 	
+	if get_tree().get_current_scene().name.find("DionFight") != -1 or get_tree().get_current_scene().name.find("GaeaFight") != -1 or get_tree().get_current_scene().name.find("FinalFight") != -1:
+		$Camera2D.limit_top = 0
+	
 	# have to change some settings if it's multiplayer
 	if get_tree().get_current_scene().name.find("Multiplayer") != -1:
 		$Camera2D.limit_top = 0
@@ -111,6 +114,9 @@ func _ready():
 		$CanvasLayer/PlayerStats/heart5.position.y = 6
 		$CanvasLayer/PlayerStats/HBoxContainer.visible = false
 		
+
+	if get_tree().get_current_scene().name.find("Gaea") != -1:
+		$Camera2D.limit_top = 0
 
 
 # tracks the time elapsed to calculate how the player accelerates
@@ -148,7 +154,7 @@ func _physics_process(delta):
 			
 			# acceleration algorithm: speeds up to a max speed of SPEED + 50
 			# 50 is the greatest added speed
-			modspeed = (time_elapsed / 12)
+			modspeed = (time_elapsed / 10)
 			if modspeed > 65:
 				velocity.x = SPEED + 65
 				current_speed = SPEED + 65
@@ -168,7 +174,7 @@ func _physics_process(delta):
 		elif Input.is_action_pressed("ui_a") and !Input.is_action_pressed("ui_d"):
 			_time_process()
 			
-			modspeed = (time_elapsed / 12)
+			modspeed = (time_elapsed / 10)
 			if modspeed > 65:
 				velocity.x = -SPEED - 65
 				current_speed = -SPEED - 65
@@ -207,6 +213,7 @@ func _physics_process(delta):
 		
 		# player can only attack after shooting animation completes
 		if Input.is_action_just_pressed("ui_c") && MasterData.spear_charges != 0:
+			#print(MasterData.spear_charges)
 			if $AnimatedSprite.animation != "sword" and spear_delay == false:
 				is_attacking = true
 				spear_delay = true
@@ -250,13 +257,19 @@ func _physics_process(delta):
 		if $AnimatedSprite.animation == "sword":
 			for obj in $Melee.get_overlapping_bodies():
 				for enemy_name in MasterData.enemy_names:
+					#print(obj.name);
 					if enemy_name in obj.name:
-						obj.dead()
-						enemy_slain()
+						print(obj.name);
+						if enemy_name == "Dionysus" or enemy_name == "Zeus" or enemy_name == "Gaea":
+							obj.decreaseHealth();
+							#enemy_slain();
+						else:
+							obj.dead()
+							enemy_slain()
 				
 		
 		#spawns a wall on left and right side of the player
-		if Input.is_action_just_pressed("ui_h"):
+		if Input.is_action_just_pressed("ui_v") and get_tree().get_current_scene().name.find("Multiplayer") == -1:
 			if is_attacking == false && wall_delay == false && on_ground == true:
 				wall_delay = true
 				$WallTimer.start()
@@ -410,8 +423,15 @@ func _on_AnimatedSprite_animation_finished():
 		position.x = 16
 		position.y = 160
 		
-		if get_tree().get_current_scene().name.find("FinalBoss") != -1:
-			position.y = 140
+		
+		if MasterData.player_location == "DionFight":
+			get_tree().change_scene("res://StageOne.tscn")
+		
+		if MasterData.player_location == "GaeaFight":
+			get_tree().change_scene("res://StageTwo.tscn")
+		
+		if MasterData.player_location == "FinalBoss":
+			get_tree().change_scene("res://StageThree.tscn")
 		
 		MasterData.health = 100
 		is_dead = false

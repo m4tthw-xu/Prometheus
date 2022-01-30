@@ -1,0 +1,42 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://DAintropart2.webm" type="VideoStream" id=1]
+[ext_resource path="res://intropart2.gd" type="Script" id=2]
+[ext_resource path="res://customPlayer.tscn" type="PackedScene" id=3]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_top = -13.0
+margin_right = 320.0
+margin_bottom = 197.0
+stream = ExtResource( 1 )
+autoplay = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerComp" parent="." instance=ExtResource( 3 )]
+position = Vector2( 135, 152 )
+
+[node name="PlayerComp" parent="PlayerComp" instance=ExtResource( 3 )]
+position = Vector2( 50, 0 )
+
+[node name="PlayerComp" parent="PlayerComp/PlayerComp" instance=ExtResource( 3 )]
+position = Vector2( 50, 0 )
+
+[node name="PlayerComp" parent="PlayerComp/PlayerComp/PlayerComp" instance=ExtResource( 3 )]
+position = Vector2( 50, 0 )
+
+[node name="PlayerComp2" parent="PlayerComp/PlayerComp/PlayerComp" instance=ExtResource( 3 )]
+position = Vector2( -150, 0 )
+
+[node name="PlayerComp" parent="PlayerComp/PlayerComp/PlayerComp/PlayerComp2" instance=ExtResource( 3 )]
+position = Vector2( -50, 0 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+
+[connection signal="finished" from="VideoPlayer" to="." method="_on_VideoPlayer_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

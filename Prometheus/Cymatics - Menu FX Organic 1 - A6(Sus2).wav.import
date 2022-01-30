@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Cymatics - Menu FX Organic 1 - A6(Sus2).wav-cd2a44b4e9aa691ad0e7028900bffb51.sample"
+
+[deps]
+
+source_file="res://Cymatics - Menu FX Organic 1 - A6(Sus2).wav"
+dest_files=[ "res://.import/Cymatics - Menu FX Organic 1 - A6(Sus2).wav-cd2a44b4e9aa691ad0e7028900bffb51.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -72,7 +72,7 @@ func _physics_process(delta):
 	
 		# running left and right animations and mechanics
 		# will not flip direction of sprite until the attack animation is done
-		if Input.is_action_pressed("ui_'") and !Input.is_action_pressed("ui_l"):
+		if Input.is_action_pressed("ui_right_arrow") and !Input.is_action_pressed("ui_left_arrow"):
 			
 			_time_process()
 			
@@ -91,9 +91,9 @@ func _physics_process(delta):
 			if is_attacking == false:
 				$AnimatedSprite.play("run")
 				
-			if !Input.is_action_pressed("ui_'"):
+			if !Input.is_action_pressed("ui_right_arrow"):
 				_ready()
-		elif Input.is_action_pressed("ui_l") and !Input.is_action_pressed("ui_'"):
+		elif Input.is_action_pressed("ui_left_arrow") and !Input.is_action_pressed("ui_right_arrow"):
 			_time_process()
 			
 			modspeed = (time_elapsed / 12)
@@ -109,9 +109,9 @@ func _physics_process(delta):
 			if is_attacking == false:
 				$AnimatedSprite.play("run")
 			
-			if !Input.is_action_pressed("ui_l"):
+			if !Input.is_action_pressed("ui_left_arrow"):
 				_ready()
-		elif !Input.is_action_pressed("ui_l") and !Input.is_action_pressed("ui_'"):
+		elif !Input.is_action_pressed("ui_left_arrow") and !Input.is_action_pressed("ui_right_arrow"):
 			velocity.x = 0
 			if on_ground == true:
 				if is_attacking == false:
@@ -125,7 +125,7 @@ func _physics_process(delta):
 				$AnimatedSprite.flip_h = true
 			
 		# jump mechanics
-		if Input.is_action_pressed("ui_p"): #ui_accept is the space bar or enter bar
+		if Input.is_action_pressed("ui_up_arrow"): #ui_accept is the space bar or enter bar
 			if on_ground == true:
 				velocity.y = JUMP_POWER
 				on_ground = false
@@ -157,9 +157,9 @@ func _physics_process(delta):
 			current_speed = 0
 		else:
 			on_ground = false
-			if direction == "left" and !Input.is_action_pressed("ui_'"):
+			if direction == "left" and !Input.is_action_pressed("ui_right_arrow"):
 				velocity.x = current_speed / 1.5
-			elif direction == "right" and !Input.is_action_pressed("ui_l"):
+			elif direction == "right" and !Input.is_action_pressed("ui_left_arrow"):
 				velocity.x = current_speed / 1.5
 			if velocity.y <0:
 				if is_attacking == false:

@@ -1,7 +1,7 @@
 extends Area2D
 
 # speed of the fireball
-const SPEED = 45
+const SPEED = 80
 var velocity = Vector2()
 
 func _read():

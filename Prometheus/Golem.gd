@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 
-const GRAVITY = 30
+const GRAVITY = 2
 const SPEED = 50
 const FLOOR = Vector2(0,-1)
 
@@ -11,6 +11,8 @@ var direction = 1
 
 var is_dead = false
 
+var health = 2
+
 var is_attacking = false
 var previous_animation = ""
 
@@ -18,6 +20,7 @@ var player_obj = preload("res://Player.tscn")
 
 # gets called when golem dies
 func dead():
+	health = 0;
 	$MeleeCooldown.stop()
 	is_dead = true
 	velocity = Vector2(0,0)
@@ -29,10 +32,13 @@ func dead():
 	# will increase the player's kill count by 1 when slime dies
 	var player_path = "/root/" + get_parent().name + "/Player"
 	get_node(player_path).kills += 1
+	MasterData.golem_count = MasterData.golem_count - 1
 
 
 
 func _physics_process(delta):
+	
+	$Health.setValue(health/2.0*100);
 	
 	if is_dead == false:
 		
@@ -93,3 +99,8 @@ func _on_MeleeCooldown_timeout():
 	$AnimatedSprite.position.x = 0
 	previous_animation == "idle"
 	$AnimatedSprite.play("idle")
+
+func decreaseHealth():
+	health-=1
+	if health<=0:
+		dead()

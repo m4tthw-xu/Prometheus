@@ -9,3 +9,6 @@ func _ready():
 	MasterData.enemies_slain_stage_three = 0
 	MasterData.health = 100
 	MasterData.spear_charges = 4
+	$AudioStreamPlayer2D.play()
+	MasterData.player_location = "StageOne"
+	
