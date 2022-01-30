@@ -32,13 +32,11 @@ v: spawn walls (defense)
 
 ### Multiplayer
 
-Player 1 still has the same controls, but Player 2 has different controls. To help remember these controls, they are the same as the classic wasd setup, but moved to the right side of the keyboard.
+up arrow key: jump
 
-P: jump
+left arrow key: left
 
-L: left
-
-': right
+right arrow key: right
 
 ]: melee
 
