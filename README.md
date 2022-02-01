@@ -49,6 +49,22 @@ There are comments to increase code readibility. Our game structure is divided i
 
 # Copyright & Licensing
 
-All art, music, code, and other objects in our game was created in house by us. The Godot licensing agreement allows game developers FULL control over games developed with the Godot game engine. In other words, we have full copyright and licensing rights.
+Most art, music, code, and other objects, with exception of the images used in the intro cutscenes, was created by us. The Godot licensing agreement allows game developers FULL control over games developed with the Godot game engine. In other words, we have full copyright and licensing rights over the code and the sprites.
+
+# Credits
+All images assets are original to the team, EXCEPT for the images used in the introduction/story background  
+All of these images are used under fair use guidelines for educational purposes only  
+Zeus: https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DSdIVEG7UeBg&psig=AOvVaw1-WCHZOftuKrS_IU6Lc5kW&ust=1637798645773000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJCZzuLcr_QCFQAAAAAdAAAAABAD  
+Titan: https://www.google.com/url?sa=i&url=https%3A%2F%2Fagaunews.com%2Fexclusive-mint-of-poland-expands-its-mythology-range-with-the-launch-of-cronus-the-first-of-the-greek-titans%2F&psig=AOvVaw0778Qqk68JZrFB5MFEy2Ni&ust=1637799673037000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCPD2k8ndr_QCFQAAAAAdAAAAABAD  
+Prometheus and Epimetheus as brothers: https://static.wikia.nocookie.net/monster/images/7/77/IMG_9044.jpg/revision/latest?cb=20190207201530  
+Cupped hands: http://1.bp.blogspot.com/-SWWJOxYEzcs/UrzuDBX89HI/AAAAAAAAAQE/M2iuC_SxF4c/s1600/hand-image-2.png  
+Earth: https://assets.weforum.org/article/image/25NbfYbkiuMvTW3P_YO8QeE-SxtvNKGRX9Dgr6W-gNE.jpg  
+Cow:vhttps://images.newscientist.com/wp-content/uploads/2020/05/18164813/spacecow_2.jpg?enable=upscale&width=1200&crop=16%3A9%2Csmart  
+Dolphin: https://res.cloudinary.com/dk-find-out/image/upload/q_80,w_1920,f_auto/MA_00659840_fevfnc.jpg  
+Platypus: https://www.thoughtco.com/thmb/0WDw6IRpBeBQkh1Dc7ketpa-4EU=/1836x1377/smart/filters:no_upscale()/GettyImages-635477020-14202280a8714a179f5850decf0d254e.jpg  
+All animated sprites were made in Piskel   
+All large scale artwork, tilesets, and UI elements were made in Aseprite  
+All music was made in Logic Pro  
+With exception of the introduction title orchestral piece which was made in FL Studio  
 
 Our game is protected under the Apache License 2.0
